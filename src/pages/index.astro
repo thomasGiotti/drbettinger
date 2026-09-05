@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ReassuranceStrip from "../components/ReassuranceStrip.astro";
+import DoctorSection from "../components/DoctorSection.astro";
+import TreatmentsHome from "../components/TreatmentsHome.astro";
+import CabinetSection from "../components/CabinetSection.astro";
+import { site } from "../data/site.js";
+
+const title = `Angiologue à ${site.city} — ${site.doctorName}`;
+const description = `${site.doctorName}, médecin angiologue à ${site.city} : diagnostic et traitement des maladies veineuses, artérielles et lymphatiques (varices, écho-doppler, sclérothérapie). Prise de rendez-vous en ligne.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <Hero />
+  <ReassuranceStrip />
+  <DoctorSection />
+  <TreatmentsHome />
+  <CabinetSection />
+</BaseLayout>

@@ -1,0 +1,124 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import CtaButton from "../components/CtaButton.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../data/site.js";
+
+const title = `Contact — ${site.doctorName}, angiologue à ${site.city}`;
+const description = `Coordonnées, accès et formulaire de contact du cabinet de ${site.doctorName} à ${site.city}.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow="Nous contacter" title="Contact" />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:px-10">
+      <div>
+        <SectionTitle title="Prendre rendez-vous" class="mb-8" />
+        <p class="leading-relaxed text-ink-soft">
+          La prise de rendez-vous se fait par téléphone auprès du secrétariat, aux horaires
+          d'ouverture du cabinet. Le formulaire ci-contre est réservé aux questions d'ordre général
+          sur le cabinet : il ne permet pas de réserver un créneau et ne doit pas être utilisé pour
+          transmettre des informations de santé.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <CtaButton href={`tel:${site.phoneHref}`} variant="accent">Appeler le cabinet</CtaButton>
+        </div>
+
+        <div class="mt-14 space-y-6">
+          <div class="flex gap-4">
+            <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+            <div>
+              <p class="text-xs tracking-wide-label uppercase text-ink-soft">Adresse</p>
+              <p class="mt-1 leading-relaxed text-ink">{site.addressLine1}<br />{site.addressLine2}</p>
+              <p class="mt-1 text-sm text-ink-soft">{site.access}</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+            <div>
+              <p class="text-xs tracking-wide-label uppercase text-ink-soft">Horaires</p>
+              <dl class="mt-1 space-y-0.5">
+                {site.hours.map((h) => (
+                  <div class="flex gap-2 text-sm text-ink">
+                    <dt class="text-ink-soft">{h.day} :</dt>
+                    <dd>{h.hours}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <Icon name="mail" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+            <div>
+              <p class="text-xs tracking-wide-label uppercase text-ink-soft">Email</p>
+              <p class="mt-1"><a href={`mailto:${site.email}`} class="text-ink hover:underline">{site.email}</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Remplacer par : plan interactif (ex. carte OpenStreetMap) une fois l'adresse définitive connue -->
+        <div class="relative mt-10 aspect-[16/10] w-full overflow-hidden border border-ink-soft/15 bg-accent/20">
+          <svg viewBox="0 0 400 250" class="h-full w-full" aria-hidden="true">
+            <rect width="400" height="250" fill="#F0D8BC" opacity="0.3" />
+            <path d="M0 90h400M0 160h400M120 0v250M280 0v250" stroke="#123A5C" stroke-opacity="0.15" stroke-width="2" />
+            <circle cx="200" cy="125" r="10" fill="#123A5C" />
+            <circle cx="200" cy="125" r="20" stroke="#123A5C" stroke-opacity="0.4" fill="none" stroke-dasharray="2 6" />
+          </svg>
+          <p class="absolute bottom-3 left-3 text-xs text-ink-soft">Plan indicatif — cabinet situé au centre</p>
+        </div>
+      </div>
+
+      <div>
+        <SectionTitle title="Une question ?" class="mb-8" />
+        <form id="contact-form" class="space-y-5" novalidate>
+          <div>
+            <label for="name" class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft">Nom complet</label>
+            <input id="name" name="name" type="text" required class="w-full border border-ink-soft/25 px-4 py-3 text-ink focus:border-navy focus:outline-none" />
+          </div>
+          <div>
+            <label for="email" class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft">Email</label>
+            <input id="email" name="email" type="email" required class="w-full border border-ink-soft/25 px-4 py-3 text-ink focus:border-navy focus:outline-none" />
+          </div>
+          <div>
+            <label for="phone" class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft">Téléphone (facultatif)</label>
+            <input id="phone" name="phone" type="tel" class="w-full border border-ink-soft/25 px-4 py-3 text-ink focus:border-navy focus:outline-none" />
+          </div>
+          <div>
+            <label for="message" class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft">Message</label>
+            <textarea id="message" name="message" rows="5" required class="w-full border border-ink-soft/25 px-4 py-3 text-ink focus:border-navy focus:outline-none"></textarea>
+            <p class="mt-2 text-xs text-ink-soft">
+              Merci de ne transmettre aucune information médicale ou de santé via ce formulaire.
+            </p>
+          </div>
+          <button type="submit" class="w-full bg-navy px-6 py-3.5 text-xs tracking-wide-label uppercase text-white transition-colors hover:bg-navy-deep">
+            Envoyer le message
+          </button>
+          <p id="form-feedback" class="hidden text-sm text-navy" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // NOTE développeur : ce formulaire n'est relié à aucun backend pour l'instant.
+  // Brancher un service d'envoi d'email (ex. fonction serverless) avant mise en production.
+  const form = document.getElementById("contact-form");
+  const feedback = document.getElementById("form-feedback");
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!(form instanceof HTMLFormElement) || !form.checkValidity()) {
+      form?.reportValidity();
+      return;
+    }
+    if (feedback) {
+      feedback.textContent = "Merci, votre message a bien été pris en compte. Nous revenons vers vous rapidement.";
+      feedback.classList.remove("hidden");
+    }
+    form.reset();
+  });
+</script>

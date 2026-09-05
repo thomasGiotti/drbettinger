@@ -1,0 +1,54 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+import VascularArt from "./VascularArt.astro";
+import CtaButton from "./CtaButton.astro";
+import Icon from "./Icon.astro";
+import { site } from "../data/site.js";
+---
+
+<section id="votre-cabinet" class="grid grid-cols-1 lg:grid-cols-2">
+  <div class="flex flex-col justify-center bg-accent px-6 py-20 sm:px-12 lg:px-16">
+    <SectionTitle title="Votre cabinet" class="mb-10" />
+
+    <div class="max-w-md space-y-7 text-ink">
+      <div class="flex gap-4">
+        <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+        <div>
+          <p class="text-xs tracking-wide-label uppercase text-ink-soft">Adresse</p>
+          <p class="mt-1 leading-relaxed">{site.addressLine1}<br />{site.addressLine2}</p>
+          <p class="mt-1 text-sm text-ink-soft">{site.access}</p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+        <div>
+          <p class="text-xs tracking-wide-label uppercase text-ink-soft">Horaires</p>
+          <dl class="mt-1 space-y-0.5">
+            {site.hours.map((h) => (
+              <div class="flex gap-2 text-sm">
+                <dt class="text-ink-soft">{h.day} :</dt>
+                <dd>{h.hours}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <Icon name="phone" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+        <div>
+          <p class="text-xs tracking-wide-label uppercase text-ink-soft">Téléphone</p>
+          <p class="mt-1"><a href={`tel:${site.phoneHref}`} class="hover:underline">{site.phone}</a></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10">
+      <CtaButton href="/contact/" variant="navy">Contactez le cabinet</CtaButton>
+    </div>
+  </div>
+
+  <!-- Remplacer par : photographie réelle du cabinet (salle d'attente, plateau d'échographie) -->
+  <VascularArt variant="cabinet" class="min-h-[420px] w-full lg:min-h-full" />
+</section>

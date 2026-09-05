@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import SectionTitle from "../../components/SectionTitle.astro";
+import VascularArt from "../../components/VascularArt.astro";
+import CtaButton from "../../components/CtaButton.astro";
+import Icon from "../../components/Icon.astro";
+import { pathologies } from "../../data/pathologies.js";
+import { site } from "../../data/site.js";
+
+export function getStaticPaths() {
+  return pathologies.map((p) => ({
+    params: { slug: p.slug },
+    props: { pathology: p },
+  }));
+}
+
+const { pathology } = Astro.props;
+
+const title = `${pathology.cardTitle} — ${site.doctorName}, angiologue à ${site.city}`;
+const description = pathology.cardDesc;
+
+const illustrationBySlug = {
+  "insuffisance-veineuse-varices": "network",
+  "echo-doppler": "doppler",
+  "sclerotherapie": "network",
+  "laser-endoveineux": "network",
+  "phlebite-thrombose": "doppler",
+  "aomi": "walking",
+  "ulceres-lymphoedeme": "network",
+  "bas-de-contention": "walking",
+};
+const illustration = illustrationBySlug[pathology.slug] ?? "network";
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow="Pathologie / acte" title={pathology.cardTitle} showCta />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-5xl px-6 lg:px-10">
+      <!-- Remplacer par : illustration ou photographie douce en lien avec l'acte -->
+      <VascularArt variant={illustration} class="mb-16 aspect-[21/9] w-full shadow-lg" />
+
+      <p class="text-lg leading-relaxed text-ink">{pathology.intro}</p>
+
+      <div class="mt-4 divider-dot my-14"></div>
+
+      <SectionTitle title={pathology.question} class="mb-8" />
+      <p class="max-w-3xl leading-relaxed text-ink-soft">{pathology.whatIsIt}</p>
+
+      <div class="mt-14 divider-dot"></div>
+
+      <div class="mt-14">
+        <SectionTitle title="Déroulement de la consultation" class="mb-8" />
+        <p class="max-w-3xl leading-relaxed text-ink-soft">{pathology.course}</p>
+      </div>
+
+      {pathology.tips && (
+        <>
+          <div class="mt-14 divider-dot"></div>
+          <div class="mt-14">
+            <SectionTitle title="Conseils avant / après" class="mb-8" />
+            <p class="max-w-3xl leading-relaxed text-ink-soft">{pathology.tips}</p>
+          </div>
+        </>
+      )}
+
+      {pathology.sideEffects && (
+        <>
+          <div class="mt-14 divider-dot"></div>
+          <div class="mt-14">
+            <SectionTitle title="Suites possibles" class="mb-8" />
+            <p class="max-w-3xl leading-relaxed text-ink-soft">{pathology.sideEffects}</p>
+          </div>
+        </>
+      )}
+
+      <div class="mt-16 flex flex-col items-center gap-6 border-t border-ink-soft/10 pt-14 text-center">
+        <p class="max-w-md text-ink-soft">
+          Ce contenu est fourni à titre d'information générale. Pour un avis individualisé adapté à
+          votre situation, prenez rendez-vous au cabinet.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <CtaButton href={site.bookingUrl} variant="accent">Prendre rendez-vous</CtaButton>
+          <CtaButton href="/tarifs/" variant="navy">Découvrir les tarifs</CtaButton>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

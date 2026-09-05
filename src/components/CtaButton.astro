@@ -1,0 +1,24 @@
+---
+interface Props {
+  href: string;
+  variant?: "accent" | "navy" | "outline-white";
+  class?: string;
+  external?: boolean;
+}
+const { href, variant = "accent", class: className = "", external = false } = Astro.props;
+
+const variants = {
+  accent: "bg-accent text-ink hover:bg-accent-dark",
+  navy: "bg-navy text-white hover:bg-navy-deep",
+  "outline-white": "border border-white/70 text-white hover:bg-white/10",
+};
+---
+
+<a
+  href={href}
+  class={`inline-flex items-center justify-center gap-2 whitespace-nowrap px-7 py-3.5 text-xs tracking-wide-label uppercase font-medium transition-colors duration-200 ${variants[variant]} ${className}`}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
+  <slot />
+</a>

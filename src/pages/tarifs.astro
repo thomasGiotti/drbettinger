@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import CtaButton from "../components/CtaButton.astro";
+import { site } from "../data/site.js";
+
+const title = `Tarifs & remboursements — ${site.doctorName}, angiologue à ${site.city}`;
+const description = "Secteur conventionné, prise en charge par l'Assurance Maladie et les mutuelles : informations sur les tarifs des consultations et actes du cabinet.";
+
+const fees = [
+  { label: "Consultation de médecine vasculaire", value: "[Tarif conventionné]" },
+  { label: "Écho-doppler veineux ou artériel", value: "[Tarif conventionné]" },
+  { label: "Séance de sclérothérapie", value: "[Tarif]" },
+  { label: "Traitement endoveineux au laser", value: "[Tarif — nous consulter]" },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow="Informations pratiques" title="Tarifs & remboursements" />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-4xl px-6 lg:px-10">
+      <SectionTitle eyebrow="Secteur conventionné" title="Prise en charge Sécurité sociale" class="mb-10" />
+
+      <div class="space-y-5 leading-relaxed text-ink">
+        <p>
+          Le cabinet est conventionné en secteur [1 / 2] auprès de l'Assurance Maladie. Les
+          consultations et actes réalisés sont remboursés selon les taux en vigueur, sur présentation
+          de votre carte Vitale.
+        </p>
+        <p>
+          Une partie du reste à charge peut être prise en charge par votre mutuelle complémentaire,
+          selon votre contrat. N'hésitez pas à vous renseigner directement auprès de votre organisme.
+        </p>
+      </div>
+
+      <div class="mt-14 divider-dot"></div>
+
+      <div class="mt-14">
+        <p class="mb-6 text-xs tracking-wide-label uppercase text-ink-soft">Tarifs indicatifs</p>
+        <ul class="divide-y divide-ink-soft/10 border-y border-ink-soft/10">
+          {fees.map((f) => (
+            <li class="flex items-center justify-between gap-6 py-4">
+              <span class="text-ink">{f.label}</span>
+              <span class="shrink-0 font-serif text-navy">{f.value}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-sm text-ink-soft">
+          Les tarifs définitifs vous sont communiqués avant chaque acte et peuvent varier selon la
+          complexité de la prise en charge.
+        </p>
+      </div>
+
+      <div class="mt-16 flex justify-center">
+        <CtaButton href={site.bookingUrl} variant="accent">Prendre rendez-vous</CtaButton>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

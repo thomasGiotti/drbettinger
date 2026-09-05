@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import PathologyCard from "../../components/PathologyCard.astro";
+import { pathologies } from "../../data/pathologies.js";
+import { site } from "../../data/site.js";
+
+const title = `Pathologies & actes — ${site.doctorName}, angiologue à ${site.city}`;
+const description =
+  "Varices, écho-doppler, sclérothérapie, phlébite, artériopathie, ulcères, lymphœdème, bas de contention : découvrez les pathologies vasculaires prises en charge au cabinet.";
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero
+    eyebrow="Comprendre & se soigner"
+    title="Pathologies & actes"
+    subtitle="Un vocabulaire simple pour comprendre vos symptômes et les examens ou traitements associés. Ces pages ont une vocation d'information générale : seule une consultation permet un avis individualisé."
+  />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {pathologies.map((p) => (
+          <PathologyCard slug={p.slug} icon={p.icon} title={p.cardTitle} desc={p.cardDesc} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

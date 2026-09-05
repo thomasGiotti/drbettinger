@@ -1,0 +1,53 @@
+---
+import SectionTitle from "./SectionTitle.astro";
+import VascularArt from "./VascularArt.astro";
+import Icon from "./Icon.astro";
+import CtaButton from "./CtaButton.astro";
+import { pathologies } from "../data/pathologies.js";
+import { site } from "../data/site.js";
+
+const featured = pathologies.slice(0, 6);
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <SectionTitle eyebrow="Prise en charge" title="Les traitements" class="mb-14" />
+
+    <div class="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.3fr]">
+      <div class="relative hidden lg:block">
+        <!-- Remplacer par : photographie réelle du plateau technique / cabinet -->
+        <VascularArt variant="network" class="sticky top-28 aspect-[3/4] w-full shadow-xl" />
+      </div>
+
+      <div>
+        <ul class="divide-y divide-ink-soft/10 border-y border-ink-soft/10">
+          {featured.map((p) => (
+            <li>
+              <a href={`/pathologies/${p.slug}/`} class="group flex items-start gap-5 py-6 transition-colors hover:bg-accent/10">
+                <span class="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-navy/15 text-navy">
+                  <Icon name={p.icon} class="h-5 w-5" />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-serif text-lg font-semibold text-ink group-hover:text-navy">
+                    {p.cardTitle}
+                  </span>
+                  <span class="mt-1 block text-sm leading-relaxed text-ink-soft line-clamp-2">
+                    {p.cardDesc}...
+                  </span>
+                </span>
+                <span class="mt-2 text-ink-soft/50 transition-transform group-hover:translate-x-1 group-hover:text-navy">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-8 flex flex-wrap items-center justify-between gap-6">
+          <a href="/pathologies/" class="text-xs tracking-wide-label uppercase text-navy hover:text-navy-deep underline underline-offset-4">
+            Voir toutes les pathologies &amp; actes
+          </a>
+          <CtaButton href={site.bookingUrl} variant="navy">Prendre rendez-vous</CtaButton>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

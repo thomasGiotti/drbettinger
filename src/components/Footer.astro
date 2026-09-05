@@ -1,0 +1,77 @@
+---
+import Icon from "./Icon.astro";
+import { site } from "../data/site.js";
+
+const year = new Date().getFullYear();
+
+const columns = [
+  { icon: "pin", label: "Adresse", value: site.fullAddress, href: null },
+  { icon: "phone", label: "Téléphone", value: site.phone, href: `tel:${site.phoneHref}` },
+  { icon: "mail", label: "Email", value: site.email, href: `mailto:${site.email}` },
+  { icon: "calendar", label: "Prendre RDV", value: "Formulaire de contact", href: site.bookingUrl },
+];
+---
+
+<footer class="bg-navy-deep text-white">
+  <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
+    <div class="grid grid-cols-1 gap-10 border-b border-white/10 pb-14 sm:grid-cols-2 lg:grid-cols-4">
+      {columns.map((col) => (
+        <div class="flex flex-col items-center text-center gap-3">
+          <span class="flex h-11 w-11 items-center justify-center rounded-full border border-accent/40 text-accent">
+            <Icon name={col.icon} class="h-5 w-5" />
+          </span>
+          <span class="text-[0.7rem] tracking-wide-label uppercase text-white/60">{col.label}</span>
+          {col.href ? (
+            <a
+              href={col.href}
+              target={col.href.startsWith("http") ? "_blank" : undefined}
+              rel={col.href.startsWith("http") ? "noopener noreferrer" : undefined}
+              class="font-serif text-lg text-white hover:text-accent transition-colors"
+            >
+              {col.value}
+            </a>
+          ) : (
+            <span class="font-serif text-lg text-white">{col.value}</span>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="grid grid-cols-1 gap-10 pt-14 lg:grid-cols-3">
+      <div>
+        <a href="/" class="inline-flex items-center gap-3" aria-label={`${site.doctorName} — Accueil`}>
+          <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/40">
+            <svg viewBox="0 0 40 40" class="h-6 w-6" fill="none" aria-hidden="true">
+              <path d="M4 22h6l3-9 4 16 4-13 3 6h12" stroke="#F0D8BC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span class="font-serif text-sm tracking-label uppercase">{site.doctorName}</span>
+        </a>
+      </div>
+
+      <div class="lg:col-span-2 space-y-4 text-sm leading-relaxed text-white/70">
+        <p>
+          {site.doctorName} est médecin <strong class="text-white/90">angiologue</strong>, spécialiste des
+          pathologies veineuses, artérielles et lymphatiques, installé{" "}
+          {site.city !== "[Ville]" ? `à ${site.city}` : "[à préciser]"}. La consultation s'appuie sur un
+          diagnostic précis — notamment par écho-doppler — pour proposer une prise en charge adaptée à
+          chaque situation.
+        </p>
+        <p>
+          Ce site a une vocation d'information générale et ne remplace pas une consultation médicale.
+          Pour tout avis individualisé, prenez rendez-vous directement au cabinet.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs text-white/50 sm:flex-row lg:px-10">
+      <p>© {year} {site.doctorName} — Tous droits réservés.</p>
+      <div class="flex items-center gap-6">
+        <a href="/mentions-legales/" class="hover:text-white">Mentions légales</a>
+        <a href="/politique-confidentialite/" class="hover:text-white">Politique de confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>

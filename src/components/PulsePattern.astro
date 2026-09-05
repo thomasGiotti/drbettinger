@@ -1,0 +1,25 @@
+---
+// Motif signature : cercles concentriques pointillés évoquant une onde de pouls,
+// avec un point d'accent au centre. Purement décoratif (aria-hidden).
+interface Props {
+  class?: string;
+  tone?: "light" | "accent";
+}
+const { class: className = "", tone = "light" } = Astro.props;
+const stroke = tone === "accent" ? "#F0D8BC" : "#FFFFFF";
+const dot = "#F0D8BC";
+---
+
+<svg
+  class={className}
+  viewBox="0 0 400 400"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  <circle cx="200" cy="200" r="40" stroke={stroke} stroke-opacity="0.55" stroke-width="1" stroke-dasharray="2 6" />
+  <circle cx="200" cy="200" r="90" stroke={stroke} stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 7" />
+  <circle cx="200" cy="200" r="145" stroke={stroke} stroke-opacity="0.3" stroke-width="1" stroke-dasharray="2 8" />
+  <circle cx="200" cy="200" r="195" stroke={stroke} stroke-opacity="0.18" stroke-width="1" stroke-dasharray="2 9" />
+  <circle cx="200" cy="200" r="4" fill={dot} />
+</svg>

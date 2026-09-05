@@ -1,0 +1,36 @@
+---
+import Icon from "./Icon.astro";
+
+// Bandeau de réassurance compact, juste sous le hero.
+// Ne PAS y répéter adresse / téléphone / email : ces informations
+// ne figurent que dans le hero (CTA) et dans le footer.
+// Adapter les items ci-dessous à la réalité du cabinet.
+const items = [
+  { icon: "calendar", label: "Consultations sur rendez-vous" },
+  { icon: "doppler", label: "Écho-doppler réalisé au cabinet" },
+  { icon: "syringe", label: "Sclérothérapie sur place" },
+  { icon: "shield", label: "Secteur conventionné, sans dépassement d'honoraires" },
+];
+---
+
+<section class="relative bg-navy">
+  <!-- Fanion accent : amorce visuelle de transition, façon onglet qui dépasse -->
+  <div class="flex justify-center">
+    <div class="-mt-6 flex h-12 w-44 items-center justify-center bg-accent shadow-lg">
+      <span class="h-2 w-2 rounded-full bg-navy"></span>
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-6 py-9 lg:px-10">
+    <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      {items.map((item) => (
+        <li class="flex items-center gap-3 lg:flex-col lg:gap-2.5 lg:text-center">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-accent/40 text-accent">
+            <Icon name={item.icon} class="h-5 w-5" />
+          </span>
+          <span class="text-sm font-medium leading-snug text-white">{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

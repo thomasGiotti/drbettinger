@@ -1,0 +1,26 @@
+---
+// Titre de section avec bloc --accent en aplat, façon "fanion", posé derrière le texte.
+interface Props {
+  eyebrow?: string;
+  title: string;
+  align?: "left" | "center";
+  class?: string;
+}
+const { eyebrow, title, align = "left", class: className = "" } = Astro.props;
+const alignClass = align === "center" ? "items-center text-center mx-auto" : "items-start text-left";
+---
+
+<div class={`relative inline-flex flex-col ${alignClass} ${className}`}>
+  {eyebrow && (
+    <span class="mb-3 text-xs tracking-wide-label uppercase text-ink-soft">{eyebrow}</span>
+  )}
+  <div class="relative isolate">
+    <span
+      class="absolute -left-4 top-1/2 -z-10 h-[70%] w-[calc(100%+2rem)] -translate-y-1/2 bg-accent"
+      aria-hidden="true"
+    ></span>
+    <h2 class="relative font-serif text-3xl sm:text-4xl md:text-[2.75rem] leading-tight text-ink px-1">
+      {title}
+    </h2>
+  </div>
+</div>

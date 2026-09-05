@@ -1,0 +1,29 @@
+---
+import PulsePattern from "./PulsePattern.astro";
+import CtaButton from "./CtaButton.astro";
+import { site } from "../data/site.js";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  showCta?: boolean;
+}
+const { eyebrow, title, subtitle, showCta = false } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-navy pb-20 pt-40 lg:pb-24">
+  <PulsePattern class="pointer-events-none absolute -right-20 -top-10 h-[340px] w-[340px] opacity-40" />
+  <PulsePattern class="pointer-events-none absolute -left-24 bottom-0 h-[300px] w-[300px] opacity-30" />
+
+  <div class="relative z-10 mx-auto max-w-5xl px-6 text-center lg:px-10">
+    {eyebrow && <p class="mb-4 text-xs tracking-wide-label uppercase text-accent">{eyebrow}</p>}
+    <h1 class="font-serif text-3xl leading-tight text-white sm:text-4xl lg:text-5xl">{title}</h1>
+    {subtitle && <p class="mx-auto mt-5 max-w-2xl text-white/75 leading-relaxed">{subtitle}</p>}
+    {showCta && (
+      <div class="mt-8">
+        <CtaButton href={site.bookingUrl} variant="accent">Prendre rendez-vous</CtaButton>
+      </div>
+    )}
+  </div>
+</section>

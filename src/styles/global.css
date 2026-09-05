@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #123A5C;
+  --color-navy-deep: #0B2740;
+  --color-accent: #F0D8BC;
+  --color-accent-dark: #E3C39E;
+  --color-ink: #1B2A35;
+  --color-ink-soft: #5A6B75;
+
+  --font-serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.tracking-label {
+  letter-spacing: 0.14em;
+}
+
+.tracking-wide-label {
+  letter-spacing: 0.2em;
+}
+
+/* Fine dividing line with a centered decorative dot, used between sections */
+.divider-dot {
+  position: relative;
+  height: 1px;
+  background-color: color-mix(in srgb, var(--color-ink-soft) 30%, transparent);
+}
+
+.divider-dot::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: var(--color-accent-dark);
+  transform: translate(-50%, -50%);
+}
+
+/* Truncate description text to two lines */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

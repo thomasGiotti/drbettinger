@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site.js";
+
+const title = `Politique de confidentialité — ${site.doctorName}`;
+const description = "Politique de confidentialité et gestion des cookies du site.";
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero title="Politique de confidentialité" />
+
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-3xl space-y-12 px-6 leading-relaxed text-ink lg:px-10">
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Responsable de traitement</h2>
+        <p class="mt-4 text-ink-soft">
+          {site.doctorName}, {site.addressLine1}, {site.addressLine2}, est responsable du traitement
+          des données collectées via ce site.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Données collectées et finalités</h2>
+        <p class="mt-4 text-ink-soft">
+          Le formulaire de contact collecte votre nom, votre email, éventuellement votre téléphone, et
+          le contenu de votre message, dans le seul but de répondre à votre demande d'information. Ce
+          site ne collecte et ne conserve aucune donnée de santé : toute prise de rendez-vous et tout
+          échange relatif à votre état de santé doivent se faire par un contact téléphonique direct
+          avec le cabinet.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Base légale et durée de conservation</h2>
+        <p class="mt-4 text-ink-soft">
+          Les données transmises via le formulaire de contact sont traitées sur la base de votre
+          consentement et conservées pendant [durée à préciser, ex. 12 mois] à compter de leur
+          collecte, puis supprimées.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Vos droits</h2>
+        <p class="mt-4 text-ink-soft">
+          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi
+          Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement
+          et d'opposition concernant vos données personnelles. Vous pouvez exercer ces droits en nous
+          contactant à l'adresse {site.email}. Vous disposez également du droit d'introduire une
+          réclamation auprès de la CNIL (www.cnil.fr).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Cookies</h2>
+        <p class="mt-4 text-ink-soft">
+          Ce site utilise des cookies strictement nécessaires à son fonctionnement (mémorisation de
+          votre choix relatif aux cookies) et, sous réserve de votre consentement, des cookies de
+          mesure d'audience anonymisée permettant d'améliorer le site. Vous pouvez à tout moment
+          modifier votre choix via les paramètres de votre navigateur.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-serif text-2xl text-ink">Hébergement et sécurité</h2>
+        <p class="mt-4 text-ink-soft">
+          Les données sont hébergées par [nom de l'hébergeur], au sein de l'Union européenne, et
+          bénéficient de mesures de sécurité appropriées visant à empêcher tout accès non autorisé.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

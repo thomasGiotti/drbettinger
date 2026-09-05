@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import VascularArt from "../components/VascularArt.astro";
+import CtaButton from "../components/CtaButton.astro";
+import { site } from "../data/site.js";
+
+const title = `Le médecin — ${site.doctorName}, angiologue à ${site.city}`;
+const description = `Parcours, diplômes et philosophie de soin de ${site.doctorName}, médecin angiologue à ${site.city}.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow={site.speciality} title="Votre médecin" />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-10">
+      <div class="grid grid-cols-1 items-start gap-14 lg:grid-cols-[320px_1fr]">
+        <div class="mx-auto lg:mx-0">
+          <!-- Remplacer par : portrait réel du praticien, noir et blanc -->
+          <VascularArt variant="portrait" class="h-72 w-72 rounded-full shadow-xl" />
+        </div>
+
+        <div class="max-w-2xl">
+          <SectionTitle title={site.doctorName} class="mb-8" />
+
+          <div class="space-y-5 leading-relaxed text-ink">
+            <p>
+              {site.doctorName} exerce la médecine vasculaire (<strong>angiologie</strong>) avec une
+              approche à la fois rigoureuse et pédagogue. Chaque patient bénéficie d'un temps d'écoute
+              et d'explications claires sur son diagnostic, dans un cabinet équipé pour réaliser
+              l'ensemble des examens de première intention.
+            </p>
+            <p>
+              La prise en charge des pathologies veineuses, artérielles et lymphatiques repose avant
+              tout sur un diagnostic précis. C'est pourquoi l'<strong>écho-doppler</strong> (un examen
+              d'imagerie par ultrasons, indolore et sans injection) occupe une place centrale dans la
+              pratique quotidienne du cabinet.
+            </p>
+            <p>
+              {site.doctorName} attache une attention particulière à démystifier les pathologies
+              vasculaires, souvent fréquentes et bien maîtrisées, afin d'accompagner chaque patient
+              sereinement vers la solution la plus adaptée à sa situation.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <p class="mb-4 text-xs tracking-wide-label uppercase text-ink-soft">Formation &amp; diplômes</p>
+            <ul class="space-y-2.5">
+              {site.diplomas.map((d) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-ink">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-dark"></span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="mt-10">
+            <p class="mb-4 text-xs tracking-wide-label uppercase text-ink-soft">Actes pratiqués au cabinet</p>
+            <ul class="space-y-2.5">
+              {site.onSiteActs.map((a) => (
+                <li class="flex gap-3 text-sm leading-relaxed text-ink">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy"></span>
+                  <span>{a}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="mt-10">
+            <CtaButton href={site.bookingUrl} variant="navy">Prendre rendez-vous</CtaButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import PulsePattern from "./PulsePattern.astro";
+import VascularArt from "./VascularArt.astro";
+import CtaButton from "./CtaButton.astro";
+import { site } from "../data/site.js";
+---
+
+<section class="relative flex min-h-[86vh] flex-col justify-center overflow-hidden bg-navy pt-32 pb-24 lg:pt-36">
+  <!-- Motifs signature : ondes de pouls pointillées -->
+  <PulsePattern class="pointer-events-none absolute -left-24 top-10 h-[420px] w-[420px] opacity-70" />
+  <PulsePattern class="pointer-events-none absolute -right-32 bottom-0 h-[520px] w-[520px] opacity-50" />
+
+  <div class="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2 lg:px-10">
+    <div class="min-w-0">
+      <p class="mb-6 text-xs tracking-wide-label uppercase text-accent">{site.speciality}</p>
+      <h1 class="font-serif text-4xl leading-[1.15] text-white sm:text-5xl lg:text-6xl">
+        {site.doctorFirstName}<br />{site.doctorLastName}
+      </h1>
+      <p class="mt-6 max-w-md text-base leading-relaxed text-white/80">
+        Le diagnostic et le traitement de vos pathologies veineuses, artérielles et
+        lymphatiques, dans un cabinet à {site.city}.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-5">
+        <CtaButton href={site.bookingUrl} variant="accent">
+          Prendre rendez-vous
+        </CtaButton>
+        <a href="#votre-medecin" class="text-xs tracking-wide-label uppercase text-white/80 hover:text-white">
+          Découvrir le cabinet ↓
+        </a>
+      </div>
+    </div>
+
+    <div class="relative mx-auto w-full min-w-0 max-w-md">
+      <div class="absolute -inset-4 border border-accent/30"></div>
+      <!-- Remplacer par : photo réelle (geste médical / échodoppler), cadrage sobre -->
+      <VascularArt variant="doppler" class="relative aspect-[4/5] w-full shadow-2xl" />
+      <div class="absolute -bottom-6 left-3 bg-accent px-6 py-4 shadow-lg sm:-left-6">
+        <p class="font-serif text-sm text-ink">Écho-doppler <br /> au cabinet</p>
+      </div>
+    </div>
+  </div>
+</section>

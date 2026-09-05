@@ -1,0 +1,25 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  slug: string;
+  icon: string;
+  title: string;
+  desc: string;
+}
+const { slug, icon, title, desc } = Astro.props;
+---
+
+<a
+  href={`/pathologies/${slug}/`}
+  class="group flex flex-col gap-5 border border-ink-soft/10 bg-white p-8 transition-all hover:border-accent-dark hover:shadow-lg"
+>
+  <span class="flex h-14 w-14 items-center justify-center rounded-full bg-accent/40 text-navy group-hover:bg-accent">
+    <Icon name={icon} class="h-6 w-6" />
+  </span>
+  <span class="font-serif text-xl leading-snug text-ink">{title}</span>
+  <span class="text-sm leading-relaxed text-ink-soft">{desc}</span>
+  <span class="mt-auto text-xs tracking-wide-label uppercase text-navy group-hover:underline">
+    En savoir plus →
+  </span>
+</a>

@@ -1,0 +1,150 @@
+---
+// Illustrations vectorielles originales (aucune photographie/logo réemployé).
+// Chaque variante est un visuel "à remplacer si besoin" par une photographie
+// réelle du cabinet — repère laissé en commentaire sur chaque appel.
+interface Props {
+  variant: "doppler" | "walking" | "network" | "cabinet" | "portrait";
+  class?: string;
+}
+const { variant, class: className = "" } = Astro.props;
+---
+
+<div class={`relative overflow-hidden bg-navy ${className}`}>
+  {variant === "doppler" && (
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="g-doppler" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#16456B" />
+          <stop offset="55%" stop-color="#123A5C" />
+          <stop offset="100%" stop-color="#0B2740" />
+        </linearGradient>
+        <linearGradient id="g-doppler-leg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#EAF1F7" stop-opacity="0.10" />
+          <stop offset="100%" stop-color="#EAF1F7" stop-opacity="0.02" />
+        </linearGradient>
+      </defs>
+      <rect width="600" height="800" fill="url(#g-doppler)" />
+      {Array.from({ length: 6 }).map((_, i) => (
+        <circle cx="330" cy="430" r={46 + i * 62} stroke="#F0D8BC" stroke-opacity={0.34 - i * 0.05} fill="none" stroke-dasharray="2 9" />
+      ))}
+      {Array.from({ length: 3 }).map((_, i) => (
+        <circle cx="560" cy="90" r={40 + i * 55} stroke="#F0D8BC" stroke-opacity={0.18 - i * 0.05} fill="none" stroke-dasharray="2 10" />
+      ))}
+      <path
+        d="M232 0 C 224 90, 236 170, 262 250 C 300 330, 322 380, 320 452 C 318 520, 296 574, 286 632 C 281 664, 284 690, 300 706 C 336 712, 386 726, 408 772 L 300 800 L 196 800 C 210 742, 214 690, 236 634 C 262 566, 276 512, 262 442 C 250 380, 214 320, 210 236 C 207 150, 214 74, 208 0 Z"
+        fill="url(#g-doppler-leg)"
+        stroke="#F0D8BC"
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      <g stroke="#EAF1F7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path d="M244 10 C 236 120, 268 210, 286 320 C 300 410, 296 500, 282 588 C 274 640, 268 690, 274 780" stroke-width="2.6" />
+        <path d="M266 120 C 300 150, 322 176, 330 220" stroke-width="1.6" stroke-opacity="0.7" />
+        <path d="M292 300 C 250 336, 232 372, 238 420" stroke-width="1.6" stroke-opacity="0.7" />
+        <path d="M290 470 C 320 510, 330 556, 320 610" stroke-width="1.6" stroke-opacity="0.7" />
+        <path d="M280 600 C 248 636, 240 672, 250 720" stroke-width="1.6" stroke-opacity="0.55" />
+      </g>
+      {[[286,320],[282,470],[276,588],[330,220],[238,420]].map(([cx, cy]) => (
+        <circle cx={cx} cy={cy} r="4.5" fill="#F0D8BC" />
+      ))}
+      <g>
+        <rect x="52" y="612" width="496" height="132" fill="none" stroke="#F0D8BC" stroke-opacity="0.3" />
+        <path d="M52 690 h496" stroke="#F0D8BC" stroke-opacity="0.3" stroke-dasharray="1 6" />
+        <path
+          d="M60 690 L92 690 L104 636 L120 690 L150 690 L164 622 L182 690 L214 690 L228 650 L244 690 L286 690 L300 628 L316 690 L352 690 L366 656 L382 690 L430 690 L444 632 L460 690 L500 690 L512 662 L526 690 L540 690"
+          fill="none"
+          stroke="#F0D8BC"
+          stroke-width="2"
+          stroke-linejoin="round"
+        />
+      </g>
+      <g transform="translate(150,210) rotate(-24)" opacity="0.95">
+        <rect x="0" y="0" width="38" height="104" rx="14" fill="#EAF1F7" />
+        <rect x="9" y="100" width="20" height="26" rx="6" fill="#F0D8BC" />
+        <path d="M19 0 C 8 -40, -34 -52, -70 -44" stroke="#EAF1F7" stroke-width="3" fill="none" stroke-linecap="round" stroke-opacity="0.55" />
+      </g>
+    </svg>
+  )}
+
+  {variant === "walking" && (
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="g-walk" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#123A5C" />
+          <stop offset="100%" stop-color="#0B2740" />
+        </linearGradient>
+      </defs>
+      <rect width="600" height="800" fill="url(#g-walk)" />
+      {Array.from({ length: 4 }).map((_, i) => (
+        <circle cx="300" cy="400" r={70 + i * 60} stroke="#F0D8BC" stroke-opacity={0.28 - i * 0.05} fill="none" stroke-dasharray="2 8" />
+      ))}
+      <g stroke="#EAF1F7" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M260 250 L300 260 L330 400 L310 560 L330 700" />
+        <path d="M300 260 L360 420 L340 560 L365 700" />
+        <circle cx="252" cy="228" r="16" fill="#EAF1F7" stroke="none" />
+      </g>
+      <path d="M120 620 q60 -30 120 0 t120 0 t120 0" stroke="#F0D8BC" stroke-width="1.5" stroke-opacity="0.4" fill="none" stroke-dasharray="3 6" />
+    </svg>
+  )}
+
+  {variant === "network" && (
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="g-net" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0B2740" />
+          <stop offset="100%" stop-color="#123A5C" />
+        </linearGradient>
+      </defs>
+      <rect width="600" height="900" fill="url(#g-net)" />
+      <g stroke="#EAF1F7" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.85">
+        <path d="M300 80 C 260 200, 340 260, 300 380 C 270 470, 200 500, 180 620 C 165 700, 190 760, 170 840" />
+        <path d="M300 380 C 340 460, 400 470, 420 560 C 435 630, 410 680, 430 760" />
+        <path d="M300 80 C 340 180, 260 240, 300 340" />
+        <path d="M180 620 C 130 650, 110 700, 90 760" />
+        <path d="M430 760 C 450 800, 470 820, 500 850" />
+      </g>
+      {[[300,80],[300,380],[180,620],[420,560],[170,840],[430,760],[90,760],[500,850]].map(([cx,cy]) => (
+        <circle cx={cx} cy={cy} r="4" fill="#F0D8BC" />
+      ))}
+      <circle cx="300" cy="450" r="150" stroke="#F0D8BC" stroke-opacity="0.15" fill="none" stroke-dasharray="2 9" />
+      <circle cx="300" cy="450" r="230" stroke="#F0D8BC" stroke-opacity="0.1" fill="none" stroke-dasharray="2 10" />
+    </svg>
+  )}
+
+  {variant === "cabinet" && (
+    <svg class="absolute inset-0 h-full w-full" viewBox="0 0 900 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="g-cab" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#0B2740" />
+          <stop offset="100%" stop-color="#16456B" />
+        </linearGradient>
+      </defs>
+      <rect width="900" height="700" fill="url(#g-cab)" />
+      <g stroke="#EAF1F7" stroke-width="1.6" fill="none" opacity="0.75" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="120" y="360" width="360" height="16" rx="8" />
+        <rect x="150" y="330" width="60" height="40" rx="6" />
+        <rect x="470" y="200" width="220" height="280" rx="10" />
+        <path d="M500 260h160M500 300h160M500 340h100" stroke-opacity="0.5" />
+        <circle cx="700" cy="150" r="60" stroke-dasharray="2 8" stroke-opacity="0.4" />
+      </g>
+      <circle cx="230" cy="420" r="120" stroke="#F0D8BC" stroke-opacity="0.18" fill="none" stroke-dasharray="2 9" />
+      <circle cx="230" cy="420" r="190" stroke="#F0D8BC" stroke-opacity="0.1" fill="none" stroke-dasharray="2 10" />
+    </svg>
+  )}
+
+  {variant === "portrait" && (
+    <svg class="absolute inset-0 h-full w-full grayscale" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <radialGradient id="g-portrait" cx="50%" cy="35%" r="75%">
+          <stop offset="0%" stop-color="#5A6B75" />
+          <stop offset="100%" stop-color="#1B2A35" />
+        </radialGradient>
+      </defs>
+      <rect width="400" height="400" fill="url(#g-portrait)" />
+      <ellipse cx="185" cy="145" rx="58" ry="68" fill="#D9D9D9" opacity="0.55" />
+      <path d="M95 410 C90 300, 130 235, 200 232 C272 235, 312 300, 308 410 Z" fill="#D9D9D9" opacity="0.55" />
+      <path d="M200 232 C240 234, 270 260, 288 300" stroke="#0B2740" stroke-width="1" opacity="0.3" fill="none" />
+      <rect width="400" height="400" fill="#0B2740" opacity="0.18" />
+    </svg>
+  )}
+</div>

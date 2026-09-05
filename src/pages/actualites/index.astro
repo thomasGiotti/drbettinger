@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { articles } from "../../data/articles.js";
+import { site } from "../../data/site.js";
+
+const title = `Actualités — ${site.doctorName}, angiologue à ${site.city}`;
+const description = "Articles de vulgarisation sur les pathologies vasculaires et la santé veineuse et artérielle.";
+
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+---
+
+<BaseLayout title={title} description={description}>
+  <PageHero eyebrow="Vulgarisation médicale" title="Actualités" subtitle="Quelques repères simples pour mieux comprendre votre santé vasculaire au quotidien." />
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-5xl px-6 lg:px-10">
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2">
+        {articles.map((a) => (
+          <a href={`/actualites/${a.slug}/`} class="group flex flex-col gap-4 border border-ink-soft/10 bg-white p-8 transition-all hover:border-accent-dark hover:shadow-lg">
+            <span class="text-xs tracking-wide-label uppercase text-ink-soft">
+              {dateFormatter.format(new Date(a.date))}
+            </span>
+            <span class="font-serif text-xl leading-snug text-ink">{a.title}</span>
+            <span class="text-sm leading-relaxed text-ink-soft line-clamp-2">{a.excerpt}</span>
+            <span class="mt-auto text-xs tracking-wide-label uppercase text-navy group-hover:underline">
+              Lire l'article →
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
