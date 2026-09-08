@@ -15,16 +15,16 @@ export const site = {
   fullAddress: "11 Place Jeanne Mance, 52200 Langres",
   phone: "03 25 88 44 58",
   phoneHref: "+33325884458",
-  email: "[contact@cabinet-exemple.fr]",
   hours: [
     { day: "Lundi – Vendredi", hours: "[9h00 – 18h00]" },
     { day: "Samedi", hours: "[Sur rendez-vous]" },
     { day: "Dimanche", hours: "Fermé" },
   ],
   access: "[Accès : métro/bus à préciser, parking à proximité]",
-  // La prise de rendez-vous se fait uniquement par téléphone ou via le formulaire
-  // de contact du site. Aucune plateforme tierce (type Doctolib).
-  bookingUrl: "/contact/",
+  // La prise de rendez-vous se fait uniquement par téléphone auprès du
+  // secrétariat. Aucune plateforme tierce (type Doctolib), aucun formulaire.
+  // Les CTA "Prendre rendez-vous" déclenchent donc un appel (lien tel:).
+  bookingUrl: "tel:+33325884458",
   bookingLabel: "Prendre rendez-vous",
   bookingLabelShort: "Prendre RDV",
   rpps: "10004943295",

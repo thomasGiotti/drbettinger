@@ -7,7 +7,7 @@ import Icon from "../components/Icon.astro";
 import { site } from "../data/site.js";
 
 const title = `Contact - ${site.doctorName}, angiologue à ${site.city}`;
-const description = `Coordonnées, accès et formulaire de contact du cabinet de ${site.doctorName} à ${site.city}.`;
+const description = `Coordonnées, horaires et accès du cabinet de ${site.doctorName} à ${site.city}.`;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -20,20 +20,33 @@ const description = `Coordonnées, accès et formulaire de contact du cabinet de
       <div>
         <SectionTitle title="Prendre rendez-vous" class="mb-8" />
         <p class="leading-relaxed text-ink-soft">
-          La prise de rendez-vous se fait par téléphone auprès du secrétariat,
-          aux horaires d'ouverture du cabinet. Le formulaire ci-contre est
-          réservé aux questions d'ordre général sur le cabinet : il ne permet
-          pas de réserver un créneau et ne doit pas être utilisé pour
-          transmettre des informations de santé.
+          La prise de rendez-vous se fait uniquement par téléphone auprès du
+          secrétariat, aux horaires d'ouverture du cabinet. Merci de ne
+          transmettre aucune information de santé par téléphone au secrétariat.
         </p>
 
         <div class="mt-8 flex flex-wrap gap-4">
           <CtaButton href={`tel:${site.phoneHref}`} variant="accent"
-            >Appeler le cabinet</CtaButton
+            >{site.bookingLabelShort}</CtaButton
           >
         </div>
 
         <div class="mt-14 space-y-6">
+          <div class="flex gap-4">
+            <Icon name="phone" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+            <div>
+              <p class="text-xs tracking-wide-label uppercase text-ink-soft">
+                Téléphone
+              </p>
+              <p class="mt-1">
+                <a
+                  href={`tel:${site.phoneHref}`}
+                  class="leading-relaxed text-ink hover:underline"
+                  >{site.phone}</a
+                >
+              </p>
+            </div>
+          </div>
           <div class="flex gap-4">
             <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
             <div>
@@ -64,24 +77,22 @@ const description = `Coordonnées, accès et formulaire de contact du cabinet de
             </div>
           </div>
           <div class="flex gap-4">
-            <Icon name="mail" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+            <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
             <div>
               <p class="text-xs tracking-wide-label uppercase text-ink-soft">
-                Email
+                Accès
               </p>
-              <p class="mt-1">
-                <a
-                  href={`mailto:${site.email}`}
-                  class="text-ink hover:underline">{site.email}</a
-                >
-              </p>
+              <p class="mt-1 leading-relaxed text-ink">{site.access}</p>
             </div>
           </div>
         </div>
+      </div>
 
+      <div>
+        <SectionTitle title="Localisation" class="mb-8" />
         <!-- Carte : localisation du cabinet. Filtre grayscale pour rester dans la palette du site. -->
         <div
-          class="relative mt-10 aspect-[16/10] w-full overflow-hidden border border-ink-soft/15 bg-navy-deep"
+          class="relative aspect-[4/3] w-full overflow-hidden border border-ink-soft/15 bg-navy-deep"
         >
           <iframe
             src="https://www.google.com/maps?q=11+Place+Jeanne+Mance,+52200+Langres&output=embed"
@@ -94,99 +105,6 @@ const description = `Coordonnées, accès et formulaire de contact du cabinet de
           ></iframe>
         </div>
       </div>
-
-      <div>
-        <SectionTitle title="Une question ?" class="mb-8" />
-        <form id="contact-form" class="space-y-5" novalidate>
-          <div>
-            <label
-              for="name"
-              class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft"
-              >Nom complet</label
-            >
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              class="w-full border border-ink-soft/25 bg-white px-4 py-3 text-ink focus:border-navy focus:outline-none"
-            />
-          </div>
-          <div>
-            <label
-              for="email"
-              class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft"
-              >Email</label
-            >
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              class="w-full border border-ink-soft/25 bg-white px-4 py-3 text-ink focus:border-navy focus:outline-none"
-            />
-          </div>
-          <div>
-            <label
-              for="phone"
-              class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft"
-              >Téléphone (facultatif)</label
-            >
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              class="w-full border border-ink-soft/25 bg-white px-4 py-3 text-ink focus:border-navy focus:outline-none"
-            />
-          </div>
-          <div>
-            <label
-              for="message"
-              class="mb-2 block text-xs tracking-wide-label uppercase text-ink-soft"
-              >Message</label
-            >
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              class="w-full border border-ink-soft/25 bg-white px-4 py-3 text-ink focus:border-navy focus:outline-none"
-            ></textarea>
-            <p class="mt-2 text-xs text-ink-soft">
-              Merci de ne transmettre aucune information médicale ou de santé
-              via ce formulaire.
-            </p>
-          </div>
-          <button
-            type="submit"
-            class="w-full bg-navy px-6 py-3.5 text-xs tracking-wide-label uppercase text-white transition-colors hover:bg-navy-deep"
-          >
-            Envoyer le message
-          </button>
-          <p id="form-feedback" class="hidden text-sm text-navy" role="status">
-          </p>
-        </form>
-      </div>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  // NOTE développeur : ce formulaire n'est relié à aucun backend pour l'instant.
-  // Brancher un service d'envoi d'email (ex. fonction serverless) avant mise en production.
-  const form = document.getElementById("contact-form");
-  const feedback = document.getElementById("form-feedback");
-  form?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (!(form instanceof HTMLFormElement) || !form.checkValidity()) {
-      form?.reportValidity();
-      return;
-    }
-    if (feedback) {
-      feedback.textContent =
-        "Merci, votre message a bien été pris en compte. Nous revenons vers vous rapidement.";
-      feedback.classList.remove("hidden");
-    }
-    form.reset();
-  });
-</script>

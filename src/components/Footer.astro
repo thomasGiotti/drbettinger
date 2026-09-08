@@ -13,15 +13,9 @@ const columns = [
     href: `tel:${site.phoneHref}`,
   },
   {
-    icon: "mail",
-    label: "Email",
-    value: site.email,
-    href: `mailto:${site.email}`,
-  },
-  {
     icon: "calendar",
     label: "Prendre RDV",
-    value: "Formulaire de contact",
+    value: "Par téléphone",
     href: site.bookingUrl,
   },
 ];
@@ -30,7 +24,7 @@ const columns = [
 <footer class="bg-navy-deep text-white">
   <div class="mx-auto max-w-7xl px-6 py-16 lg:px-10">
     <div
-      class="grid grid-cols-1 gap-10 border-b border-white/10 pb-14 sm:grid-cols-2 lg:grid-cols-4"
+      class="grid grid-cols-1 gap-10 border-b border-white/10 pb-14 sm:grid-cols-3"
     >
       {
         columns.map((col) => (
