@@ -5,20 +5,26 @@ import SectionTitle from "../components/SectionTitle.astro";
 import CtaButton from "../components/CtaButton.astro";
 import { site } from "../data/site.js";
 
-const title = `Tarifs & remboursements — ${site.doctorName}, angiologue à ${site.city}`;
+const title = `Tarifs & remboursements - ${site.doctorName}, angiologue à ${site.city}`;
 const description =
   "Secteur conventionné, prise en charge par l'Assurance Maladie et les mutuelles : informations sur les tarifs des consultations et actes du cabinet.";
 
 const fees = [
   {
     label: "Consultation de médecine vasculaire",
+    value: "[Tarif conventionné secteur 1]",
+  },
+  {
+    label: "Écho-doppler veineux ou artériel des membres",
     value: "[Tarif conventionné]",
   },
-  { label: "Écho-doppler veineux ou artériel", value: "[Tarif conventionné]" },
-  { label: "Séance de sclérothérapie", value: "[Tarif]" },
   {
-    label: "Traitement endoveineux au laser",
-    value: "[Tarif — nous consulter]",
+    label: "Écho-doppler des troncs supra-aortiques / transcrânien",
+    value: "[Tarif conventionné]",
+  },
+  {
+    label: "Écho-doppler aortique et dépistage d'anévrisme",
+    value: "[Tarif conventionné]",
   },
 ];
 ---

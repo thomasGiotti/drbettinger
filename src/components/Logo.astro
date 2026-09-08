@@ -1,6 +1,6 @@
 ---
 // Monogramme + wordmark. Le pictogramme évoque une onde de pouls inscrite
-// dans un cercle — identité propre au cabinet, sans lien avec la référence.
+// dans un cercle - identité propre au cabinet, sans lien avec la référence.
 import { site } from "../data/site.js";
 
 interface Props {
@@ -14,14 +14,30 @@ const wave = "#F0D8BC";
 const initials = `${site.doctorFirstName?.[0] ?? "S"}${site.doctorLastName?.[0] ?? "B"}`;
 ---
 
-<a href="/" class={`inline-flex items-center gap-3 ${className}`} aria-label={`${site.doctorName} — Accueil`}>
-  <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border" style={`border-color:${ring}`}>
+<a
+  href="/"
+  class={`inline-flex items-center gap-3 ${className}`}
+  aria-label={`${site.doctorName} - Accueil`}
+>
+  <span
+    class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border"
+    style={`border-color:${ring}`}
+  >
     <svg viewBox="0 0 40 40" class="h-6 w-6" fill="none" aria-hidden="true">
-      <path d="M4 22h6l3-9 4 16 4-13 3 6h12" stroke={wave} stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path
+        d="M4 22h6l3-9 4 16 4-13 3 6h12"
+        stroke={wave}
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
     </svg>
   </span>
   <span class={`font-serif leading-tight ${textColor}`}>
-    <span class="block whitespace-nowrap text-sm tracking-label uppercase">{site.doctorName}</span>
-    <span class="block text-[0.65rem] tracking-wide-label uppercase opacity-75">Médecine vasculaire</span>
+    <span class="block whitespace-nowrap text-sm tracking-label uppercase"
+      >{site.doctorName}</span
+    >
+    <span class="block text-[0.65rem] tracking-wide-label uppercase opacity-75"
+      >Médecine vasculaire</span
+    >
   </span>
 </a>

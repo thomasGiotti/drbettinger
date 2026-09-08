@@ -11,7 +11,7 @@ const featured = pathologies.slice(0, 6);
 
 <section class="bg-cream py-24">
   <div class="mx-auto max-w-7xl px-6 lg:px-10">
-    <SectionTitle eyebrow="Prise en charge" title="Les traitements" class="mb-14" />
+    <SectionTitle eyebrow="Au cabinet" title="Examens & actes" class="mb-14" />
 
     <div class="grid grid-cols-1 gap-14 lg:grid-cols-[1fr_1.3fr]">
       <div class="relative hidden lg:block">
@@ -32,7 +32,7 @@ const featured = pathologies.slice(0, 6);
                     {p.cardTitle}
                   </span>
                   <span class="mt-1 block text-sm leading-relaxed text-ink-soft line-clamp-2">
-                    {p.cardDesc}...
+                    {p.cardDesc}
                   </span>
                 </span>
                 <span class="mt-2 text-ink-soft/50 transition-transform group-hover:translate-x-1 group-hover:text-navy">→</span>
@@ -43,7 +43,7 @@ const featured = pathologies.slice(0, 6);
 
         <div class="mt-8 flex flex-wrap items-center justify-between gap-6">
           <a href="/pathologies/" class="text-xs tracking-wide-label uppercase text-navy hover:text-navy-deep underline underline-offset-4">
-            Voir toutes les pathologies &amp; actes
+            Voir tous les examens &amp; actes
           </a>
           <CtaButton href={site.bookingUrl} variant="navy">Prendre rendez-vous</CtaButton>
         </div>

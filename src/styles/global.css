@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy: #123A5C;
-  --color-navy-deep: #0B2740;
-  --color-accent: #F0D8BC;
-  --color-accent-dark: #E3C39E;
-  /* Fond des sections claires — jamais de blanc pur, trop dur à côté du navy et du beige. */
-  --color-cream: #FAF6EE;
-  --color-ink: #1B2A35;
-  --color-ink-soft: #5A6B75;
+  --color-navy: #123a5c;
+  --color-navy-deep: #0b2740;
+  --color-accent: #f0d8bc;
+  --color-accent-dark: #e3c39e;
+  /* Fond des sections claires - jamais de blanc pur, trop dur à côté du navy et du beige. */
+  --color-cream: #ede3d1;
+  --color-ink: #1b2a35;
+  --color-ink-soft: #5a6b75;
 
   --font-serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -16,6 +16,15 @@
 
 html {
   scroll-behavior: smooth;
+  /* Clip horizontal overflow ici (et non sur <body>) : un overflow sur <body>
+     en fait un conteneur de défilement et casse `position: sticky` du header. */
+  overflow-x: hidden;
+}
+
+/* Les ancres (#votre-cabinet, etc.) ne doivent pas passer sous le header sticky. */
+:target,
+[id] {
+  scroll-margin-top: 6rem;
 }
 
 body {

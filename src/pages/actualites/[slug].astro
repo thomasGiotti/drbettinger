@@ -13,27 +13,38 @@ export function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const dateFormatter = new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 
-const title = `${article.title} — ${site.doctorName}`;
+const title = `${article.title} - ${site.doctorName}`;
 const description = article.excerpt;
 ---
 
 <BaseLayout title={title} description={description}>
-  <PageHero eyebrow={dateFormatter.format(new Date(article.date))} title={article.title} />
+  <PageHero
+    eyebrow={dateFormatter.format(new Date(article.date))}
+    title={article.title}
+  />
 
   <section class="bg-cream py-20">
-    <div class="mx-auto max-w-2xl space-y-6 px-6 leading-relaxed text-ink lg:px-10">
-      {article.body.map((paragraph) => (
-        <p>{paragraph}</p>
-      ))}
+    <div
+      class="mx-auto max-w-2xl space-y-6 px-6 leading-relaxed text-ink lg:px-10"
+    >
+      {article.body.map((paragraph) => <p>{paragraph}</p>)}
 
-      <div class="mt-14 flex flex-col items-center gap-6 border-t border-ink-soft/10 pt-14 text-center">
+      <div
+        class="mt-14 flex flex-col items-center gap-6 border-t border-ink-soft/10 pt-14 text-center"
+      >
         <p class="max-w-md text-ink-soft">
-          Cet article est fourni à titre d'information générale et ne remplace pas un avis médical
-          individualisé.
+          Cet article est fourni à titre d'information générale et ne remplace
+          pas un avis médical individualisé.
         </p>
-        <CtaButton href={site.bookingUrl} variant="accent">Prendre rendez-vous</CtaButton>
+        <CtaButton href={site.bookingUrl} variant="accent"
+          >Prendre rendez-vous</CtaButton
+        >
       </div>
     </div>
   </section>

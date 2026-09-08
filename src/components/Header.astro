@@ -10,11 +10,17 @@ function isActive(href) {
   if (href === "/") return currentPath === "/";
   return currentPath.startsWith(href);
 }
+
+// Seule la page d'accueil possède un hero plein écran : le header y démarre
+// transparent puis passe en --navy plein au scroll. Partout ailleurs il est
+// en --navy plein dès le départ, sans transition.
+const overHero = currentPath === "/";
 ---
 
 <header
   id="site-header"
-  class="absolute inset-x-0 top-0 z-50 transition-colors duration-300"
+  class="site-header sticky top-0 z-50"
+  data-hero={overHero ? "true" : "false"}
   data-scrolled="false"
 >
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-5 lg:px-10">
@@ -26,7 +32,7 @@ function isActive(href) {
 
       <div class="group relative">
         <button class="nav-link inline-flex items-center gap-1.5" aria-haspopup="true">
-          Pathologies &amp; actes
+          Examens &amp; actes
           <Icon name="chevron-down" class="h-3.5 w-3.5" />
         </button>
         <div
@@ -35,7 +41,7 @@ function isActive(href) {
           <ul class="rounded-sm bg-white p-2 text-left shadow-xl ring-1 ring-black/5">
             <li>
               <a href="/pathologies/" class="block rounded-sm px-4 py-2.5 font-serif text-sm text-navy hover:bg-accent/40">
-                Toutes les pathologies &amp; actes
+                Tous les examens &amp; actes
               </a>
             </li>
             <li class="my-1 border-t border-ink-soft/10"></li>
@@ -79,7 +85,7 @@ function isActive(href) {
     <div class="space-y-1 bg-navy-deep px-6 pb-6 pt-2">
       <a href="/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Accueil</a>
       <a href="/le-medecin/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Le médecin</a>
-      <a href="/pathologies/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Pathologies &amp; actes</a>
+      <a href="/pathologies/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Examens &amp; actes</a>
       <a href="/tarifs/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Tarifs</a>
       <a href="/actualites/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Actualités</a>
       <a href="/contact/" class="block py-2.5 text-sm tracking-label uppercase text-white/90">Contact</a>
@@ -91,6 +97,24 @@ function isActive(href) {
 </header>
 
 <style>
+  /* Le header est sticky et ne consomme pas de hauteur dans le flux : la marge
+     négative laisse le contenu (hero) remonter dessous, comme avec l'ancien
+     positionnement absolu. */
+  .site-header {
+    margin-bottom: -5rem;
+    background-color: var(--color-navy);
+  }
+
+  /* Page d'accueil : transparent au départ, --navy plein une fois scrollé. */
+  .site-header[data-hero="true"] {
+    background-color: transparent;
+    transition: background-color 200ms ease, box-shadow 200ms ease;
+  }
+  .site-header[data-hero="true"][data-scrolled="true"] {
+    background-color: var(--color-navy);
+    box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.55);
+  }
+
   .nav-link {
     font-size: 0.75rem;
     letter-spacing: 0.14em;
@@ -116,15 +140,14 @@ function isActive(href) {
     toggle.setAttribute("aria-expanded", String(isHidden));
   });
 
+  // Bascule transparent -> --navy plein uniquement sur la page d'accueil
+  // (hero plein écran). Ailleurs le header est déjà en --navy plein.
   const header = document.getElementById("site-header");
-  const onScroll = () => {
-    if (!header) return;
-    if (window.scrollY > 40) {
-      header.classList.add("bg-navy-deep/95", "backdrop-blur-sm", "shadow-sm");
-    } else {
-      header.classList.remove("bg-navy-deep/95", "backdrop-blur-sm", "shadow-sm");
-    }
-  };
-  document.addEventListener("scroll", onScroll, { passive: true });
-  onScroll();
+  if (header && header.dataset.hero === "true") {
+    const onScroll = () => {
+      header.dataset.scrolled = window.scrollY > 50 ? "true" : "false";
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 </script>
