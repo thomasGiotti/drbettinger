@@ -22,7 +22,7 @@ const description = article.excerpt;
 <BaseLayout title={title} description={description}>
   <PageHero eyebrow={dateFormatter.format(new Date(article.date))} title={article.title} />
 
-  <section class="bg-white py-20">
+  <section class="bg-cream py-20">
     <div class="mx-auto max-w-2xl space-y-6 px-6 leading-relaxed text-ink lg:px-10">
       {article.body.map((paragraph) => (
         <p>{paragraph}</p>

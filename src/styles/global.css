@@ -5,6 +5,8 @@
   --color-navy-deep: #0B2740;
   --color-accent: #F0D8BC;
   --color-accent-dark: #E3C39E;
+  /* Fond des sections claires — jamais de blanc pur, trop dur à côté du navy et du beige. */
+  --color-cream: #FAF6EE;
   --color-ink: #1B2A35;
   --color-ink-soft: #5A6B75;
 
@@ -17,7 +19,7 @@ html {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
 }

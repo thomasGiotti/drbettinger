@@ -10,8 +10,10 @@ const description = "Mentions légales du site du cabinet médical.";
 <BaseLayout title={title} description={description}>
   <PageHero title="Mentions légales" />
 
-  <section class="bg-white py-20">
-    <div class="mx-auto max-w-3xl space-y-12 px-6 leading-relaxed text-ink lg:px-10">
+  <section class="bg-cream py-20">
+    <div
+      class="mx-auto max-w-3xl space-y-12 px-6 leading-relaxed text-ink lg:px-10"
+    >
       <div>
         <h2 class="font-serif text-2xl text-ink">Éditeur du site</h2>
         <p class="mt-4 text-ink-soft">
@@ -20,13 +22,15 @@ const description = "Mentions légales du site du cabinet médical.";
           {site.addressLine1}, {site.addressLine2}<br />
           Téléphone : {site.phone}<br />
           Email : {site.email}<br />
-          Numéro RPPS : {site.rpps} — Numéro ADELI : {site.adeli}<br />
+          Numéro RPPS : {site.rpps}<br />
           Médecin inscrit à l'Ordre des Médecins du [département / région à préciser]
         </p>
       </div>
 
       <div>
-        <h2 class="font-serif text-2xl text-ink">Directeur de la publication</h2>
+        <h2 class="font-serif text-2xl text-ink">
+          Directeur de la publication
+        </h2>
         <p class="mt-4 text-ink-soft">{site.doctorName}</p>
       </div>
 
@@ -41,26 +45,29 @@ const description = "Mentions légales du site du cabinet médical.";
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Conception et réalisation</h2>
-        <p class="mt-4 text-ink-soft">[Nom / société de conception du site, si souhaité]</p>
+        <p class="mt-4 text-ink-soft">
+          [Nom / société de conception du site, si souhaité]
+        </p>
       </div>
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Propriété intellectuelle</h2>
         <p class="mt-4 text-ink-soft">
-          L'ensemble des contenus présents sur ce site (textes, illustrations, mise en page) est
-          protégé au titre du droit d'auteur. Toute reproduction, même partielle, est soumise à
-          autorisation préalable.
+          L'ensemble des contenus présents sur ce site (textes, illustrations,
+          mise en page) est protégé au titre du droit d'auteur. Toute
+          reproduction, même partielle, est soumise à autorisation préalable.
         </p>
       </div>
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Vocation du site</h2>
         <p class="mt-4 text-ink-soft">
-          Ce site a une vocation d'information générale sur l'activité du cabinet et sur les
-          pathologies vasculaires courantes. Il ne constitue en aucun cas un service de téléconsultation
-          ni un espace de conseil médical personnalisé. Conformément aux recommandations de l'Ordre
-          des Médecins en matière de communication, aucune promesse de résultat n'est faite sur ce
-          site.
+          Ce site a une vocation d'information générale sur l'activité du
+          cabinet et sur les pathologies vasculaires courantes. Il ne constitue
+          en aucun cas un service de téléconsultation ni un espace de conseil
+          médical personnalisé. Conformément aux recommandations de l'Ordre des
+          Médecins en matière de communication, aucune promesse de résultat
+          n'est faite sur ce site.
         </p>
       </div>
 
@@ -68,15 +75,18 @@ const description = "Mentions légales du site du cabinet médical.";
         <h2 class="font-serif text-2xl text-ink">Données personnelles</h2>
         <p class="mt-4 text-ink-soft">
           Le traitement de vos données personnelles est détaillé dans notre{" "}
-          <a href="/politique-confidentialite/" class="text-navy underline">politique de confidentialité</a>.
+          <a href="/politique-confidentialite/" class="text-navy underline"
+            >politique de confidentialité</a
+          >.
         </p>
       </div>
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Litiges</h2>
         <p class="mt-4 text-ink-soft">
-          Le présent site est soumis au droit français. En cas de litige, et à défaut d'accord amiable,
-          les tribunaux français seront seuls compétents.
+          Le présent site est soumis au droit français. En cas de litige, et à
+          défaut d'accord amiable, les tribunaux français seront seuls
+          compétents.
         </p>
       </div>
     </div>
