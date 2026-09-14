@@ -1,5 +1,81 @@
 export const articles = [
   {
+    slug: "comprendre-la-microcirculation-sanguine",
+    title: "Comprendre la microcirculation sanguine",
+    date: "2026-09-08",
+    author: "Dr Stéphane Bettinger",
+    excerpt:
+      "On parle souvent des grosses veines et des grandes artères quand on évoque la circulation sanguine. Mais une grande partie de ce qui se joue au quotidien dans notre corps se passe à une échelle bien plus petite : celle de la microcirculation.",
+    // `content` : blocs typés (h2, p, ul, note) rendus par actualites/[slug].astro
+    content: [
+      {
+        type: "p",
+        text: "On parle souvent des grosses veines et des grandes artères quand on évoque la circulation sanguine. Mais une grande partie de ce qui se joue au quotidien dans notre corps se passe à une échelle bien plus petite : celle de la microcirculation. Moins connue, elle est pourtant essentielle au bon fonctionnement de nos tissus, de la peau jusqu'aux organes.",
+      },
+      { type: "h2", text: "Qu'est-ce que la microcirculation ?" },
+      {
+        type: "p",
+        text: "La microcirculation désigne l'ensemble des plus petits vaisseaux sanguins de l'organisme : les artérioles, les capillaires et les veinules. Invisibles à l'œil nu, ces vaisseaux mesurent parfois moins d'un dixième de millimètre de diamètre. C'est à ce niveau que se fait l'échange essentiel entre le sang et les tissus : apport d'oxygène et de nutriments, évacuation du dioxyde de carbone et des déchets métaboliques.",
+      },
+      {
+        type: "p",
+        text: "Contrairement aux grosses veines et artères, qui servent surtout de « routes » pour transporter le sang, la microcirculation est le lieu où ce sang remplit réellement sa fonction nourricière. On peut la comparer aux petites rues d'une ville qui desservent chaque maison, là où les grandes artères ne sont que les autoroutes de passage.",
+      },
+      { type: "h2", text: "Pourquoi peut-elle se détériorer ?" },
+      {
+        type: "p",
+        text: "Plusieurs facteurs peuvent altérer le bon fonctionnement de la microcirculation au fil du temps :",
+      },
+      {
+        type: "ul",
+        items: [
+          "la sédentarité et le manque d'activité physique,",
+          "le tabac, qui resserre les petits vaisseaux,",
+          "le diabète, qui fragilise progressivement leur paroi,",
+          "l'âge, avec une perte naturelle d'élasticité des vaisseaux,",
+          "certaines maladies vasculaires plus larges (insuffisance veineuse, artériopathie).",
+        ],
+      },
+      {
+        type: "p",
+        text: "Quand la microcirculation fonctionne moins bien, les tissus reçoivent moins d'oxygène et éliminent moins bien leurs déchets — ce qui peut expliquer certains symptômes du quotidien.",
+      },
+      { type: "h2", text: "Quels signes peuvent alerter ?" },
+      {
+        type: "p",
+        text: "Certains signes, pris isolément, restent bénins la plupart du temps. Mais s'ils persistent ou s'associent entre eux, ils méritent d'être évoqués en consultation :",
+      },
+      {
+        type: "ul",
+        items: [
+          "une sensation de jambes lourdes en fin de journée,",
+          "des extrémités (mains, pieds) souvent froides,",
+          "des fourmillements ou engourdissements,",
+          "une cicatrisation plus lente que d'habitude,",
+          "une peau qui devient plus fine ou plus sensible sur certaines zones.",
+        ],
+      },
+      {
+        type: "p",
+        text: "Ces signes ne sont pas systématiquement liés à un problème de microcirculation — ils peuvent avoir bien d'autres causes. C'est justement l'objet de la consultation que d'y voir plus clair.",
+      },
+      { type: "h2", text: "Comment l'évaluer ?" },
+      {
+        type: "p",
+        text: "L'examen de référence pour explorer la circulation sanguine, y compris ses répercussions sur la microcirculation, reste l'écho-doppler. Cet examen indolore, réalisé directement au cabinet, permet d'observer le flux sanguin dans les vaisseaux et de détecter d'éventuelles anomalies à un stade précoce.",
+      },
+      { type: "h2", text: "En pratique" },
+      {
+        type: "p",
+        text: "Il n'existe pas de solution unique : la prise en charge dépend de la cause identifiée et du contexte de chaque patient. Une consultation permet de faire un point personnalisé, d'évaluer s'il est utile de réaliser des examens complémentaires, et de proposer, si besoin, un suivi adapté.",
+      },
+      {
+        type: "note",
+        text: "Cet article a une vocation d'information générale et ne remplace pas une consultation médicale. Pour tout avis individualisé, prenez rendez-vous directement au cabinet.",
+      },
+    ],
+  },
+  {
     slug: "marche-et-veines",
     title: "Pourquoi la marche est bénéfique pour vos veines",
     date: "2026-03-10",
