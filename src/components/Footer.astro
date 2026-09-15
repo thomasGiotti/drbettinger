@@ -1,5 +1,6 @@
 ---
 import Icon from "./Icon.astro";
+import EmergencyNotice from "./EmergencyNotice.astro";
 import { site } from "../data/site.js";
 
 const year = new Date().getFullYear();
@@ -104,6 +105,9 @@ const columns = [
           consultation médicale. Pour tout avis individualisé, prenez
           rendez-vous directement au cabinet.
         </p>
+
+        <!-- Voir EmergencyNotice.astro : message à conserver impérativement. -->
+        <EmergencyNotice variant="dark" class="max-w-lg" />
       </div>
     </div>
   </div>

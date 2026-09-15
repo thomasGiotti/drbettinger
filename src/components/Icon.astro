@@ -12,6 +12,7 @@ interface Props {
     | "artery"
     | "ulcer"
     | "compression"
+    | "loupe"
     | "shield"
     | "pin"
     | "phone"
@@ -107,6 +108,14 @@ const { name, class: className = "w-6 h-6" } = Astro.props;
     <path d="M18 12h12" opacity="0.6" />
     <path d="M18.6 20h10.8" opacity="0.6" />
     <path d="M19.3 28h9.4" opacity="0.6" />
+  </svg>
+)}
+
+{name === "loupe" && (
+  <svg viewBox="0 0 24 24" fill="none" class={className} stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="10.5" cy="10.5" r="6.5" />
+    <circle cx="10.5" cy="10.5" r="2.5" opacity="0.5" />
+    <path d="M15.5 15.5L21 21" />
   </svg>
 )}
 

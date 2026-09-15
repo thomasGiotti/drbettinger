@@ -1,0 +1,25 @@
+---
+// ⚠️ MESSAGE DE SÉCURITÉ OBLIGATOIRE — NE JAMAIS SUPPRIMER NI REFORMULER.
+// Consigne client : ce message doit rester visible sur la page Contact et
+// dans le pied de page, sur toutes les évolutions futures du site.
+// Ton : informatif et sobre, pas alarmiste (pas de rouge, pas de point
+// d'exclamation, pas d'icône d'alerte).
+interface Props {
+  variant?: "light" | "dark";
+  class?: string;
+}
+const { variant = "light", class: className = "" } = Astro.props;
+
+const styles = {
+  light: "border-ink-soft/25 bg-ink-soft/5 text-ink-soft",
+  dark: "border-white/20 bg-white/5 text-white/70",
+};
+---
+
+<p
+  class={`border px-4 py-3 text-sm leading-relaxed ${styles[variant]} ${className}`}
+>
+  En cas d'urgence vitale, contactez le <strong>15 (SAMU)</strong> ou le <strong
+    >112</strong
+  >, plutôt que le cabinet.
+</p>

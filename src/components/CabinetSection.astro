@@ -40,6 +40,9 @@ import { site } from "../data/site.js";
               ))
             }
           </dl>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            {site.urgentSlotsNote}
+          </p>
         </div>
       </div>
 
@@ -54,6 +57,16 @@ import { site } from "../data/site.js";
               >{site.phone}</a
             >
           </p>
+        </div>
+      </div>
+
+      <div class="flex gap-4">
+        <Icon name="doppler" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+        <div>
+          <p class="text-xs tracking-wide-label uppercase text-ink-soft">
+            Équipement
+          </p>
+          <p class="mt-1 leading-relaxed">{site.equipment}</p>
         </div>
       </div>
     </div>

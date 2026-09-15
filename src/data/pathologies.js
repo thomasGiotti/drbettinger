@@ -111,6 +111,61 @@ export const pathologies = [
     sideEffects: null,
   },
   {
+    slug: "echo-doppler-veineux-membres-superieurs",
+    icon: "vein",
+    navTitle: "Écho-doppler veineux des membres supérieurs",
+    cardTitle: "Écho-doppler veineux des membres supérieurs",
+    cardDesc:
+      "L'exploration des veines des bras, en cas de gonflement, de lourdeur ou de suspicion de phlébite du membre supérieur.",
+    question: "Qu'est-ce que l'écho-doppler veineux des membres supérieurs ?",
+    intro:
+      "Cet examen étudie la circulation veineuse des bras, des épaules jusqu'aux mains. Il est notamment utilisé pour rechercher une phlébite du membre supérieur ou explorer un gonflement inexpliqué du bras.",
+    whatIsIt:
+      "À l'aide d'une sonde à ultrasons, le médecin visualise les veines profondes et superficielles du bras et vérifie leur perméabilité et le bon fonctionnement de la circulation. Il recherche un caillot (thrombose veineuse), une compression ou une anomalie de calibre. Cet examen est plus fréquemment demandé chez les personnes porteuses d'un cathéter ou d'un dispositif veineux implantable, ou après un effort inhabituel du bras.",
+    course:
+      "Vous êtes installé assis ou allongé, le bras dénudé. Le médecin applique du gel et déplace la sonde le long du trajet veineux, de l'épaule au poignet. L'examen dure environ 20 à 30 minutes, est indolore et ne nécessite aucune préparation. Les résultats sont commentés à l'issue de l'examen.",
+    tips:
+      "Prévoyez une tenue permettant de dégager facilement le bras concerné. Aucune préparation particulière n'est nécessaire.",
+    sideEffects: null,
+  },
+  {
+    slug: "pressotherapie-oedeme-jambes",
+    icon: "compression",
+    navTitle: "Pressothérapie pour œdème des jambes",
+    cardTitle: "Pressothérapie pour œdème des jambes",
+    cardDesc:
+      "Un soin par compression pneumatique séquentielle qui favorise le retour veineux et lymphatique en cas de jambes gonflées.",
+    question: "Qu'est-ce que la pressothérapie ?",
+    intro:
+      "La pressothérapie est une technique de compression mécanique des jambes, utilisée pour accompagner la prise en charge des œdèmes d'origine veineuse ou lymphatique.",
+    whatIsIt:
+      "Le patient porte des manchons gonflables qui exercent une pression séquentielle, des chevilles vers le haut des cuisses, imitant l'effet de la pompe musculaire. Cette compression douce et progressive favorise la remontée du sang veineux et de la lymphe, et peut soulager la sensation de jambes lourdes ou gonflées. La pressothérapie s'intègre dans une prise en charge globale et ne se substitue pas au traitement de la cause de l'œdème.",
+    course:
+      "La séance se déroule confortablement installé, jambes surélevées, avec les manchons de compression placés sur les jambes. Elle dure généralement 20 à 30 minutes et est indolore. La fréquence des séances est adaptée à chaque situation et discutée en consultation.",
+    tips:
+      "Portez une tenue confortable permettant de dégager les jambes. Signalez tout antécédent de phlébite récente, d'insuffisance cardiaque ou artérielle : ces situations nécessitent un avis préalable avant d'envisager la pressothérapie.",
+    sideEffects:
+      "La pressothérapie est habituellement bien tolérée. Une sensation de fourmillement passagère peut survenir en fin de séance. Elle est contre-indiquée dans certaines situations (phlébite récente non traitée, insuffisance cardiaque décompensée, artériopathie sévère) : l'indication est donc toujours posée en consultation.",
+  },
+  {
+    slug: "capillaroscopie-peri-ungueale",
+    icon: "loupe",
+    navTitle: "Capillaroscopie péri-unguéale",
+    cardTitle: "Capillaroscopie péri-unguéale",
+    cardDesc:
+      "L'observation des petits vaisseaux à la base des ongles, utile notamment dans le bilan du phénomène de Raynaud.",
+    question: "Qu'est-ce que la capillaroscopie péri-unguéale ?",
+    intro:
+      "La capillaroscopie péri-unguéale permet d'observer directement, sous grossissement, les petits vaisseaux de la microcirculation situés à la base des ongles. C'est un examen simple, indolore et non invasif.",
+    whatIsIt:
+      "À l'aide d'un dermatoscope ou d'un capillaroscope, le médecin examine la forme, la densité et la disposition des petits capillaires visibles à la racine des ongles, en particulier ceux des doigts. Cet examen est surtout utilisé dans le bilan d'un phénomène de Raynaud (doigts qui blanchissent au froid), pour distinguer une forme sans cause particulière d'une forme associée à une maladie du tissu conjonctif, dont il peut apporter des signes précoces.",
+    course:
+      "L'examen se fait assis, les mains posées sur un support, parfois après application d'une goutte d'huile pour améliorer la transparence de la peau. Le médecin observe successivement plusieurs doigts au grossissement. Il dure une quinzaine de minutes, est indolore et ne nécessite aucune préparation particulière.",
+    tips:
+      "Évitez de vous couper les cuticules ou de vous faire une manucure agressive juste avant l'examen : cela peut gêner l'observation. Un environnement tempéré est préférable, le froid pouvant modifier l'aspect des capillaires.",
+    sideEffects: null,
+  },
+  {
     slug: "echo-doppler-penien",
     icon: "doppler",
     navTitle: "Écho-doppler pénien",

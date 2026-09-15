@@ -21,6 +21,14 @@ export const site = {
     { day: "Dimanche", hours: "Fermé" },
   ],
   access: "[Accès : métro/bus à préciser, parking à proximité]",
+  // Information factuelle sur les conditions d'exercice, à présenter sans
+  // superlatif ni argument commercial (pas de "matériel de pointe", etc.).
+  equipment:
+    "Le cabinet est équipé d'un système d'échographie à ultrasons GE Logiq E10 BT19.",
+  // Formulation neutre et informative, sans incitation ni mise en avant
+  // visuelle particulière (pas de badge, pas de couleur accent).
+  urgentSlotsNote:
+    "Des créneaux d'urgence peuvent être mis à disposition selon les disponibilités du cabinet.",
   // La prise de rendez-vous se fait uniquement par téléphone auprès du
   // secrétariat. Aucune plateforme tierce (type Doctolib), aucun formulaire.
   // Les CTA "Prendre rendez-vous" déclenchent donc un appel (lien tel:).

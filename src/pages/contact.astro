@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import CtaButton from "../components/CtaButton.astro";
 import Icon from "../components/Icon.astro";
+import EmergencyNotice from "../components/EmergencyNotice.astro";
 import { site } from "../data/site.js";
 
 const title = `Contact - ${site.doctorName}, angiologue à ${site.city}`;
@@ -30,6 +31,9 @@ const description = `Coordonnées, horaires et accès du cabinet de ${site.docto
             >{site.bookingLabelShort}</CtaButton
           >
         </div>
+
+        <!-- Voir EmergencyNotice.astro : message à conserver impérativement. -->
+        <EmergencyNotice class="mt-8" />
 
         <div class="mt-14 space-y-6">
           <div class="flex gap-4">
@@ -74,6 +78,9 @@ const description = `Coordonnées, horaires et accès du cabinet de ${site.docto
                   ))
                 }
               </dl>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+                {site.urgentSlotsNote}
+              </p>
             </div>
           </div>
           <div class="flex gap-4">
