@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PulsePattern from "../components/PulsePattern.astro";
+import CtaButton from "../components/CtaButton.astro";
+import { site } from "../data/site.js";
+
+const title = `Page introuvable - ${site.doctorName}`;
+const description = "Cette page n'existe pas ou plus.";
+---
+
+<BaseLayout title={title} description={description}>
+  <section
+    class="relative flex h-full min-h-[70vh] flex-col justify-center overflow-hidden bg-navy py-40"
+  >
+    <PulsePattern
+      class="pointer-events-none absolute -right-20 -top-10 h-[340px] w-[340px] opacity-40"
+    />
+    <PulsePattern
+      class="pointer-events-none absolute -left-24 bottom-0 h-[300px] w-[300px] opacity-30"
+    />
+
+    <div class="relative z-10 mx-auto max-w-2xl px-6 text-center lg:px-10">
+      <p class="mb-4 text-xs tracking-wide-label uppercase text-accent">
+        Erreur 404
+      </p>
+      <h1
+        class="font-serif text-3xl leading-tight text-white sm:text-4xl lg:text-5xl"
+      >
+        Cette page n'existe pas
+      </h1>
+      <p class="mx-auto mt-5 max-w-md leading-relaxed text-white/75">
+        La page que vous cherchez a peut-être été déplacée ou n'est plus
+        disponible. Vous pouvez retourner à l'accueil ou nous contacter
+        directement.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <CtaButton href="/" variant="accent">Retour à l'accueil</CtaButton>
+        <CtaButton href="/contact/" variant="outline-white"
+          >Nous contacter</CtaButton
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

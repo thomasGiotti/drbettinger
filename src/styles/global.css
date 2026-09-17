@@ -28,9 +28,18 @@ html {
 }
 
 body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   background-color: var(--color-cream);
   color: var(--color-ink);
   font-family: var(--font-sans);
+}
+
+/* Pousse le footer en bas de l'écran même quand le contenu est plus court
+   que la fenêtre (ex. page 404, pages courtes). */
+body > main {
+  flex: 1 0 auto;
 }
 
 .tracking-label {

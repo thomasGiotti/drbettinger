@@ -14,8 +14,92 @@ import { site } from "../data/site.js";
 interface Props {
   title: string;
   description: string;
+  /** N'injecter le balisage Schema.org (JSON-LD) que sur les pages qui en ont besoin (accueil, contact). */
+  schema?: boolean;
 }
-const { title, description } = Astro.props;
+const { title, description, schema = false } = Astro.props;
+
+const siteOrigin = Astro.site ?? new URL("https://example.fr");
+const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
+const ogImageUrl = new URL("/og-image.png", siteOrigin).toString();
+
+// Découpe "52200 Langres" en code postal / ville pour l'adresse structurée.
+const addressMatch = site.addressLine2.match(/^(\d{5})\s+(.*)$/);
+const postalCode = addressMatch ? addressMatch[1] : "";
+const addressLocality = addressMatch ? addressMatch[2] : site.city;
+
+// Convertit les horaires de site.js en OpeningHoursSpecification.
+// Les valeurs encore entre crochets (ex. "[9h00 – 18h00]") sont des
+// placeholders non finalisés : on les ignore tant qu'elles n'ont pas été
+// renseignées, plutôt que de publier une donnée structurée inexacte.
+const dayNameToSchema: Record<string, string> = {
+  lundi: "Monday",
+  mardi: "Tuesday",
+  mercredi: "Wednesday",
+  jeudi: "Thursday",
+  vendredi: "Friday",
+  samedi: "Saturday",
+  dimanche: "Sunday",
+};
+const allDays = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+
+function parseDayRange(day: string): string[] {
+  const parts = day
+    .toLowerCase()
+    .split(/[–-]/)
+    .map((p) => p.trim());
+  if (parts.length === 2 && allDays.includes(parts[0]) && allDays.includes(parts[1])) {
+    const start = allDays.indexOf(parts[0]);
+    const end = allDays.indexOf(parts[1]);
+    return allDays.slice(start, end + 1).map((d) => dayNameToSchema[d]);
+  }
+  const single = parts[0];
+  return dayNameToSchema[single] ? [dayNameToSchema[single]] : [];
+}
+
+const openingHoursSpecification = site.hours
+  .filter((h) => !h.hours.includes("[") && !/ferm[ée]/i.test(h.hours))
+  .map((h) => {
+    const match = h.hours.match(/(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/);
+    const dayOfWeek = parseDayRange(h.day);
+    if (!match || dayOfWeek.length === 0) return null;
+    const [, oh, om, ch, cm] = match;
+    return {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek,
+      opens: `${oh.padStart(2, "0")}:${om}`,
+      closes: `${ch.padStart(2, "0")}:${cm}`,
+    };
+  })
+  .filter((spec): spec is NonNullable<typeof spec> => spec !== null);
+
+const physicianSchema = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name: site.doctorName,
+  description: site.speciality,
+  medicalSpecialty: "Cardiovascular",
+  url: siteOrigin.toString(),
+  image: ogImageUrl,
+  telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.addressLine1,
+    postalCode,
+    addressLocality,
+    addressCountry: "FR",
+  },
+  ...(site.rpps
+    ? {
+        identifier: {
+          "@type": "PropertyValue",
+          propertyID: "RPPS",
+          value: site.rpps,
+        },
+      }
+    : {}),
+  ...(openingHoursSpecification.length > 0 ? { openingHoursSpecification } : {}),
+};
 ---
 
 <!doctype html>
@@ -30,8 +114,19 @@ const { title, description } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site ?? "https://example.fr").toString()} />
+    <link rel="canonical" href={canonicalUrl} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(physicianSchema)} />
+    )}
   </head>
   <body>
     <Header />
