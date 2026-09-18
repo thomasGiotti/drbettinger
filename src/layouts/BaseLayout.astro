@@ -14,14 +14,19 @@ import { site } from "../data/site.js";
 interface Props {
   title: string;
   description: string;
+  /** Description dédiée au partage social (og:description / twitter:description), plus courte et distincte du meta description SEO. À défaut, réutilise `description`. */
+  socialDescription?: string;
   /** N'injecter le balisage Schema.org (JSON-LD) que sur les pages qui en ont besoin (accueil, contact). */
   schema?: boolean;
 }
-const { title, description, schema = false } = Astro.props;
+const { title, description, socialDescription, schema = false } = Astro.props;
+const shareDescription = socialDescription ?? description;
 
 const siteOrigin = Astro.site ?? new URL("https://example.fr");
 const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
 const ogImageUrl = new URL("/og-image.png", siteOrigin).toString();
+const ogImageAlt = `${site.doctorName}, angiologue à ${site.city}`;
+const siteName = `${site.doctorName} — Angiologue à ${site.city}`;
 
 // Découpe "52200 Langres" en code postal / ville pour l'adresse structurée.
 const addressMatch = site.addressLine2.match(/^(\d{5})\s+(.*)$/);
@@ -110,17 +115,19 @@ const physicianSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={shareDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
+    <meta name="twitter:description" content={shareDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />

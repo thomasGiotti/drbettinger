@@ -9,31 +9,35 @@
   <rect width="1200" height="630" fill="url(#bg)" />
 
   <!-- Motif décoratif : cercles concentriques évoquant une onde de pouls -->
-  <g transform="translate(1040,120)" opacity="0.5">
+  <g transform="translate(1040,110)" opacity="0.5">
     <circle r="40" fill="none" stroke="#F0D8BC" stroke-opacity="0.55" stroke-width="1" stroke-dasharray="2 6" />
     <circle r="90" fill="none" stroke="#F0D8BC" stroke-opacity="0.4" stroke-width="1" stroke-dasharray="2 7" />
     <circle r="145" fill="none" stroke="#F0D8BC" stroke-opacity="0.3" stroke-width="1" stroke-dasharray="2 8" />
     <circle r="4" fill="#F0D8BC" />
   </g>
-  <g transform="translate(110,540)" opacity="0.35">
+  <g transform="translate(110,110)" opacity="0.35">
     <circle r="30" fill="none" stroke="#F0D8BC" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="2 6" />
     <circle r="70" fill="none" stroke="#F0D8BC" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 7" />
     <circle r="115" fill="none" stroke="#F0D8BC" stroke-opacity="0.22" stroke-width="1" stroke-dasharray="2 8" />
   </g>
 
   <!-- Badge : onde de pouls inscrite dans un cercle, identité du cabinet -->
-  <circle cx="600" cy="208" r="46" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.9" />
-  <path d="M572 212h14l7-20 9 36 9-28 7 12h24" fill="none" stroke="#F0D8BC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="600" cy="196" r="46" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.9" />
+  <path d="M572 200h14l7-20 9 36 9-28 7 12h24" fill="none" stroke="#F0D8BC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
 
   <!-- Nom du médecin -->
-  <text x="600" y="345" text-anchor="middle" font-family="Georgia, 'Iowan Old Style', serif" font-size="64" fill="#FFFFFF">Dr Stéphane Bettinger</text>
+  <text x="600" y="333" text-anchor="middle" font-family="Georgia, 'Iowan Old Style', serif" font-size="64" fill="#FFFFFF">Dr Stéphane Bettinger</text>
 
   <!-- Trait d'accent -->
-  <rect x="540" y="382" width="120" height="2" fill="#F0D8BC" opacity="0.7" />
+  <rect x="540" y="370" width="120" height="2" fill="#F0D8BC" opacity="0.7" />
 
   <!-- Mention -->
-  <text x="600" y="424" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="#F0D8BC">ANGIOLOGUE À LANGRES</text>
+  <text x="600" y="412" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" letter-spacing="4" fill="#F0D8BC">ANGIOLOGUE À LANGRES</text>
 
   <!-- Sous-mention -->
-  <text x="600" y="470" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="2" fill="#FFFFFF" fill-opacity="0.65">Médecine vasculaire</text>
+  <text x="600" y="458" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" letter-spacing="2" fill="#FFFFFF" fill-opacity="0.65">Médecine vasculaire</text>
+
+  <!-- Bandeau bas : mention discrète, ton sobre (pas de bouton) -->
+  <rect x="0" y="574" width="1200" height="56" fill="#F0D8BC" />
+  <text x="600" y="608" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" letter-spacing="2" fill="#1B2A35">PRENDRE RENDEZ-VOUS · 03 25 88 44 58</text>
 </svg>

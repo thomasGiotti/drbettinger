@@ -8,10 +8,13 @@ import CabinetSection from "../components/CabinetSection.astro";
 import { site } from "../data/site.js";
 
 const title = `Angiologue à ${site.city} - ${site.doctorName}`;
-const description = `${site.doctorName}, médecin spécialiste en médecine vasculaire à ${site.city} : diagnostic et suivi des maladies veineuses, artérielles et lymphatiques. Écho-doppler réalisé au cabinet, dépistage d'anévrisme, phlébites et thrombophilies. Secteur 1.`;
+// Meta description (SEO Google) : ~130 caractères.
+const description = `${site.doctorName}, angiologue à ${site.city}. Écho-doppler, diagnostic et suivi des pathologies veineuses et artérielles. Secteur 1.`;
+// Description dédiée au partage social (og:description / twitter:description) : ~120 caractères, message distinct du SEO.
+const socialDescription = `${site.doctorName}, médecin spécialiste en médecine vasculaire à ${site.city}. Secteur 1, sans dépassement d'honoraires.`;
 ---
 
-<BaseLayout title={title} description={description} schema>
+<BaseLayout title={title} description={description} socialDescription={socialDescription} schema>
   <Hero />
   <ReassuranceStrip />
   <DoctorSection />
