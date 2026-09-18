@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.exemple-cabinet.fr/sitemap-index.xml
+Sitemap: https://drbettinger.vercel.app/sitemap-index.xml

@@ -6,8 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // Remplacer par le nom de domaine définitif du site avant mise en production.
-  site: 'https://www.exemple-cabinet.fr',
+  site: 'https://drbettinger.vercel.app',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()]
