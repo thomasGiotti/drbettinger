@@ -1,5 +1,7 @@
 ---
-// Titre de section avec bloc --accent en aplat, façon "fanion", posé derrière le texte.
+// Titre de section surligné en --accent, façon stabilo (clin d'œil au médecin
+// qui se documente en permanence). La bande est dessinée ligne par ligne
+// (voir .highlight dans global.css) puis animée à l'apparition au scroll.
 interface Props {
   eyebrow?: string;
   title: string;
@@ -10,17 +12,34 @@ const { eyebrow, title, align = "left", class: className = "" } = Astro.props;
 const alignClass = align === "center" ? "items-center text-center mx-auto" : "items-start text-left";
 ---
 
-<div class={`relative inline-flex flex-col ${alignClass} ${className}`}>
+<div class={`inline-flex flex-col ${alignClass} ${className}`}>
   {eyebrow && (
     <span class="mb-3 text-xs tracking-wide-label uppercase text-ink-soft">{eyebrow}</span>
   )}
-  <div class="relative isolate">
-    <span
-      class="absolute -left-4 top-1/2 -z-10 h-[70%] w-[calc(100%+2rem)] -translate-y-1/2 bg-accent"
-      aria-hidden="true"
-    ></span>
-    <h2 class="relative font-serif text-3xl sm:text-4xl md:text-[2.75rem] leading-tight text-ink px-1">
-      {title}
-    </h2>
-  </div>
+  <h2 class="font-serif text-3xl sm:text-4xl md:text-[2.75rem] leading-tight text-ink">
+    <span class="highlight">{title}</span>
+  </h2>
 </div>
+
+<script>
+  // Déclenche le « coup de stabilo » quand le titre entre dans l'écran.
+  // L'état initial (bande vide) n'est appliqué en CSS que si JavaScript est
+  // actif et que l'utilisateur n'a pas demandé à réduire les animations.
+  const highlights = document.querySelectorAll(".highlight");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-drawn");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.6 },
+    );
+    highlights.forEach((el) => observer.observe(el));
+  } else {
+    highlights.forEach((el) => el.classList.add("is-drawn"));
+  }
+</script>

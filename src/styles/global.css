@@ -69,6 +69,36 @@ body > main {
   transform: translate(-50%, -50%);
 }
 
+/* Surlignage "stabilo" des titres de section (SectionTitle.astro).
+   Fond en dégradé sur le texte inline + box-decoration-break: clone : chaque
+   ligne reçoit sa propre bande, même quand le titre passe sur plusieurs
+   lignes. La marge négative compense le padding pour que le texte reste
+   aligné avec le contenu, la bande débordant de part et d'autre. */
+.highlight {
+  --highlight-height: 0.875em;
+  padding-inline: 0.35em;
+  margin-inline: -0.35em;
+  background-image: linear-gradient(var(--color-accent), var(--color-accent));
+  background-repeat: no-repeat;
+  background-position: 0 55%;
+  background-size: 100% var(--highlight-height);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Animation de gauche à droite à l'apparition, uniquement si JS est actif
+   (sinon la bande reste visible d'emblée) et sans préférence de mouvement
+   réduit. */
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .highlight {
+    background-size: 0% var(--highlight-height);
+    transition: background-size 700ms cubic-bezier(0.25, 0.8, 0.35, 1);
+  }
+  .highlight.is-drawn {
+    background-size: 100% var(--highlight-height);
+  }
+}
+
 /* Truncate description text to two lines */
 .line-clamp-2 {
   display: -webkit-box;
