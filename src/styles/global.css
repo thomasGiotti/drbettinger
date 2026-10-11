@@ -8,7 +8,9 @@
   /* Fond des sections claires - jamais de blanc pur, trop dur à côté du navy et du beige. */
   --color-cream: #ede3d1;
   --color-ink: #1b2a35;
-  --color-ink-soft: #5a6b75;
+  /* Gris des textes secondaires : #4a5a64 = 5,2:1 sur --accent et 5,6:1 sur
+     --cream (WCAG AA 4,5:1). Ne pas l'éclaircir. */
+  --color-ink-soft: #4a5a64;
 
   --font-serif: "Playfair Display", "Iowan Old Style", Georgia, serif;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
