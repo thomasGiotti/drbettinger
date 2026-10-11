@@ -3,7 +3,9 @@
 // Tant que le bouton « Afficher la carte » n'a pas été cliqué, aucune requête
 // n'est envoyée à Google (pas de cookie tiers, pas de transfert d'IP).
 // Sans JavaScript, le bouton reste masqué et le lien « Ouvrir dans Google
-// Maps » suffit.
+// Maps » suffit. Le bloc de remplacement est dans le flux (pas d'overflow
+// hidden) : sur petit écran, le conteneur s'agrandit si le texte dépasse le
+// ratio prévu.
 import { site } from "../data/site.js";
 
 interface Props {
@@ -19,13 +21,13 @@ const iframeTitle = `Localisation du cabinet - ${site.fullAddress}`;
 ---
 
 <div
-  class={`relative w-full overflow-hidden bg-navy-deep ${className}`}
+  class={`relative flex w-full flex-col bg-navy-deep ${className}`}
   data-map-embed
   data-src={embedUrl}
   data-title={iframeTitle}
 >
   <div
-    class="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8 py-10 text-center"
+    class="flex flex-1 flex-col items-center justify-center gap-5 px-6 py-8 text-center sm:gap-6 sm:px-8"
     data-map-placeholder
   >
     <p class="font-serif text-lg text-white">{site.fullAddress}</p>
