@@ -2,6 +2,7 @@
 import SectionTitle from "./SectionTitle.astro";
 import CtaButton from "./CtaButton.astro";
 import Icon from "./Icon.astro";
+import MapEmbed from "./MapEmbed.astro";
 import { site } from "../data/site.js";
 ---
 
@@ -77,18 +78,6 @@ import { site } from "../data/site.js";
     </div>
   </div>
 
-  <!-- Carte : localisation du cabinet. Filtre grayscale pour rester dans la palette du site. -->
-  <div
-    class="relative min-h-[420px] w-full overflow-hidden bg-navy-deep lg:min-h-full"
-  >
-    <iframe
-      src="https://www.google.com/maps?q=11+Place+Jeanne+Mance,+52200+Langres&output=embed"
-      class="absolute inset-0 h-full w-full [filter:grayscale(0.6)_contrast(0.9)_brightness(0.9)]"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Localisation du cabinet - 11 Place Jeanne Mance, 52200 Langres"
-    ></iframe>
-  </div>
+  <!-- Carte : localisation du cabinet, chargée uniquement au clic (voir MapEmbed.astro). -->
+  <MapEmbed class="min-h-[420px] lg:min-h-full" />
 </section>

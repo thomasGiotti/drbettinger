@@ -1,0 +1,80 @@
+---
+// Carte Google Maps chargée uniquement à la demande du visiteur.
+// Tant que le bouton « Afficher la carte » n'a pas été cliqué, aucune requête
+// n'est envoyée à Google (pas de cookie tiers, pas de transfert d'IP).
+// Sans JavaScript, le bouton reste masqué et le lien « Ouvrir dans Google
+// Maps » suffit.
+import { site } from "../data/site.js";
+
+interface Props {
+  /** Classes du conteneur (taille, bordure…), identiques à l'ancienne iframe. */
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+const query = encodeURIComponent(site.fullAddress);
+const embedUrl = `https://www.google.com/maps?q=${query}&output=embed`;
+const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
+const iframeTitle = `Localisation du cabinet - ${site.fullAddress}`;
+---
+
+<div
+  class={`relative w-full overflow-hidden bg-navy-deep ${className}`}
+  data-map-embed
+  data-src={embedUrl}
+  data-title={iframeTitle}
+>
+  <div
+    class="absolute inset-0 flex flex-col items-center justify-center gap-6 px-8 py-10 text-center"
+    data-map-placeholder
+  >
+    <p class="font-serif text-lg text-white">{site.fullAddress}</p>
+    <p class="max-w-sm text-sm leading-relaxed text-white/75">
+      La carte Google Maps n'est chargée qu'à votre demande. Google peut alors
+      recevoir des données de connexion et déposer des cookies (voir la{" "}
+      <a href="/politique-confidentialite/" class="underline hover:text-white"
+        >politique de confidentialité</a
+      >).
+    </p>
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <button
+        type="button"
+        class="bg-accent px-7 py-3.5 text-xs font-medium tracking-wide-label uppercase text-ink transition-colors duration-200 hover:bg-accent-dark"
+        data-map-load
+        hidden
+      >
+        Afficher la carte
+      </button>
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-xs tracking-wide-label uppercase text-white/80 underline underline-offset-4 hover:text-white"
+      >
+        Ouvrir dans Google Maps
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-map-embed]").forEach((container) => {
+    const button = container.querySelector<HTMLButtonElement>("[data-map-load]");
+    if (!button) return;
+    button.hidden = false;
+    button.addEventListener("click", () => {
+      const iframe = document.createElement("iframe");
+      iframe.src = container.dataset.src ?? "";
+      iframe.title = container.dataset.title ?? "";
+      iframe.loading = "lazy";
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      // Filtre grayscale pour rester dans la palette du site.
+      iframe.className =
+        "absolute inset-0 h-full w-full border-0 [filter:grayscale(0.6)_contrast(0.9)_brightness(0.9)]";
+      container.querySelector("[data-map-placeholder]")?.remove();
+      container.append(iframe);
+      iframe.focus();
+    });
+  });
+</script>

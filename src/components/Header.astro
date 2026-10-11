@@ -132,6 +132,14 @@ const overHero = currentPath === "/";
 </style>
 
 <script>
+  // Nettoyage : l'ancien bandeau cookies (supprimé) mémorisait le choix du
+  // visiteur sous cette clé. Le site ne stocke plus rien côté navigateur.
+  try {
+    localStorage.removeItem("cookie-consent");
+  } catch {
+    // Stockage indisponible (navigation privée, blocage) : rien à nettoyer.
+  }
+
   const toggle = document.getElementById("mobile-menu-toggle");
   const menu = document.getElementById("mobile-menu");
   toggle?.addEventListener("click", () => {

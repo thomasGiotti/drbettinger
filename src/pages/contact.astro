@@ -5,6 +5,7 @@ import SectionTitle from "../components/SectionTitle.astro";
 import CtaButton from "../components/CtaButton.astro";
 import Icon from "../components/Icon.astro";
 import EmergencyNotice from "../components/EmergencyNotice.astro";
+import MapEmbed from "../components/MapEmbed.astro";
 import { site } from "../data/site.js";
 
 const title = `Contact - ${site.doctorName}, angiologue à ${site.city}`;
@@ -97,20 +98,8 @@ const description = `Coordonnées, horaires et accès du cabinet de ${site.docto
 
       <div>
         <SectionTitle title="Localisation" class="mb-8" />
-        <!-- Carte : localisation du cabinet. Filtre grayscale pour rester dans la palette du site. -->
-        <div
-          class="relative aspect-[4/3] w-full overflow-hidden border border-ink-soft/15 bg-navy-deep"
-        >
-          <iframe
-            src="https://www.google.com/maps?q=11+Place+Jeanne+Mance,+52200+Langres&output=embed"
-            class="absolute inset-0 h-full w-full [filter:grayscale(0.6)_contrast(0.9)_brightness(0.9)]"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Localisation du cabinet - 11 Place Jeanne Mance, 52200 Langres"
-          ></iframe>
-        </div>
+        <!-- Carte : localisation du cabinet, chargée uniquement au clic (voir MapEmbed.astro). -->
+        <MapEmbed class="aspect-[4/3] border border-ink-soft/15" />
       </div>
     </div>
   </section>
