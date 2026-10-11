@@ -17,10 +17,17 @@
 }
 
 html {
-  scroll-behavior: smooth;
   /* Clip horizontal overflow ici (et non sur <body>) : un overflow sur <body>
      en fait un conteneur de défilement et casse `position: sticky` du header. */
   overflow-x: hidden;
+}
+
+/* Défilement doux vers les ancres, sauf si le visiteur a demandé à réduire
+   les animations. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Les ancres (#votre-cabinet, etc.) ne doivent pas passer sous le header sticky. */

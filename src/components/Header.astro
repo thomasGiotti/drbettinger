@@ -30,12 +30,19 @@ const overHero = currentPath === "/";
       <a href="/" class:list={["nav-link", { "nav-link--active": isActive("/") }]}>Accueil</a>
       <a href="/le-medecin/" class:list={["nav-link", { "nav-link--active": isActive("/le-medecin/") }]}>Le médecin</a>
 
-      <div class="group relative">
-        <button class="nav-link inline-flex items-center gap-1.5" aria-haspopup="true">
+      <div class="group relative" data-submenu-group>
+        <button
+          class="nav-link inline-flex items-center gap-1.5"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="submenu-examens"
+          data-submenu-toggle
+        >
           Examens &amp; actes
           <Icon name="chevron-down" class="h-3.5 w-3.5" />
         </button>
         <div
+          id="submenu-examens"
           class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-4 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
         >
           <ul class="rounded-sm bg-white p-2 text-left shadow-xl ring-1 ring-black/5">
@@ -64,9 +71,15 @@ const overHero = currentPath === "/";
       <a href="/contact/" class:list={["nav-link", { "nav-link--active": isActive("/contact/") }]}>Contact</a>
     </nav>
 
+    <!-- Sur ordinateur, un lien tel: seul ne sert à rien : on affiche le numéro. -->
     <div class="hidden xl:block">
-      <CtaButton href={site.bookingUrl} variant="accent">
-        {site.bookingLabelShort}
+      <CtaButton
+        href={site.bookingUrl}
+        variant="accent"
+        label={`${site.bookingLabel} par téléphone au ${site.phone}`}
+      >
+        <Icon name="phone" class="h-3.5 w-3.5" />
+        {site.phone}
       </CtaButton>
     </div>
 
@@ -115,6 +128,14 @@ const overHero = currentPath === "/";
     box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.55);
   }
 
+  /* Échap force la fermeture du sous-menu, même si le focus ou la souris y
+     reste (le CSS l'ouvre sinon au survol / focus). Styles non « layered » :
+     ils l'emportent sur les utilitaires Tailwind group-hover/focus-within. */
+  [data-submenu-group][data-closed] #submenu-examens {
+    visibility: hidden;
+    opacity: 0;
+  }
+
   .nav-link {
     font-size: 0.75rem;
     letter-spacing: 0.14em;
@@ -142,11 +163,47 @@ const overHero = currentPath === "/";
 
   const toggle = document.getElementById("mobile-menu-toggle");
   const menu = document.getElementById("mobile-menu");
+  const setMenuOpen = (open: boolean) => {
+    menu?.classList.toggle("hidden", !open);
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+  };
   toggle?.addEventListener("click", () => {
-    const isHidden = menu?.classList.contains("hidden");
-    menu?.classList.toggle("hidden");
-    toggle.setAttribute("aria-expanded", String(isHidden));
+    setMenuOpen(menu?.classList.contains("hidden") ?? false);
   });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu && !menu.classList.contains("hidden")) {
+      setMenuOpen(false);
+      toggle?.focus();
+    }
+  });
+
+  // Sous-menu « Examens & actes » : ouvert en CSS au survol et au focus
+  // (group-hover / group-focus-within). On reflète cet état dans
+  // aria-expanded ; Échap le referme (data-closed) et rend le focus au
+  // bouton, jusqu'à ce que le focus et la souris aient quitté le groupe.
+  const submenuGroup = document.querySelector<HTMLElement>("[data-submenu-group]");
+  const submenuToggle = submenuGroup?.querySelector<HTMLButtonElement>("[data-submenu-toggle]");
+  if (submenuGroup && submenuToggle) {
+    const sync = () => {
+      const active = submenuGroup.matches(":hover, :focus-within");
+      if (!active) delete submenuGroup.dataset.closed;
+      const open = active && submenuGroup.dataset.closed === undefined;
+      submenuToggle.setAttribute("aria-expanded", String(open));
+    };
+    for (const type of ["mouseenter", "mouseleave", "focusin", "focusout"]) {
+      // setTimeout plutôt que requestAnimationFrame : focusout survient avant
+      // que le focus ait quitté le groupe, et rAF est suspendu en arrière-plan.
+      submenuGroup.addEventListener(type, () => setTimeout(sync, 0));
+    }
+    submenuGroup.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        submenuGroup.dataset.closed = "";
+        submenuToggle.focus();
+        sync();
+      }
+    });
+  }
 
   // Bascule transparent -> --navy plein uniquement sur la page d'accueil
   // (hero plein écran). Ailleurs le header est déjà en --navy plein.

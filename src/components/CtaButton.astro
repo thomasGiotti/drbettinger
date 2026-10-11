@@ -4,8 +4,10 @@ interface Props {
   variant?: "accent" | "navy" | "outline-white";
   class?: string;
   external?: boolean;
+  /** Nom accessible, quand le texte visible seul ne suffit pas (ex. un numéro). */
+  label?: string;
 }
-const { href, variant = "accent", class: className = "", external = false } = Astro.props;
+const { href, variant = "accent", class: className = "", external = false, label } = Astro.props;
 
 const variants = {
   accent: "bg-accent text-ink hover:bg-accent-dark",
@@ -19,6 +21,7 @@ const variants = {
   class={`inline-flex items-center justify-center gap-2 whitespace-nowrap px-7 py-3.5 text-xs tracking-wide-label uppercase font-medium transition-colors duration-200 ${variants[variant]} ${className}`}
   target={external ? "_blank" : undefined}
   rel={external ? "noopener noreferrer" : undefined}
+  aria-label={label}
 >
   <slot />
 </a>

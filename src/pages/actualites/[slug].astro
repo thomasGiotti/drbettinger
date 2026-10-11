@@ -29,7 +29,12 @@ const title = article.seoTitle ?? article.title;
 const description = article.seoDescription ?? article.excerpt;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  publishedTime={article.date}
+>
   <PageHero
     eyebrow={dateFormatter.format(new Date(article.date))}
     title={article.title}

@@ -1,6 +1,5 @@
 ---
 import "@fontsource/playfair-display/400.css";
-import "@fontsource/playfair-display/500.css";
 import "@fontsource/playfair-display/600.css";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
@@ -22,8 +21,20 @@ interface Props {
   schema?: boolean;
   /** Exclut la page des moteurs de recherche (noindex) et omet la balise canonical (ex. page 404). */
   noindex?: boolean;
+  /** Type Open Graph : "article" pour les actualités (avec leur date de publication). */
+  ogType?: "website" | "article";
+  publishedTime?: string;
 }
-const { title, fullTitle, description, socialDescription, schema = false, noindex = false } = Astro.props;
+const {
+  title,
+  fullTitle,
+  description,
+  socialDescription,
+  schema = false,
+  noindex = false,
+  ogType = "website",
+  publishedTime,
+} = Astro.props;
 const pageTitle = fullTitle ?? `${title} | Dr ${site.doctorLastName}, angiologue ${site.city}`;
 const shareDescription = socialDescription ?? description;
 
@@ -90,7 +101,7 @@ const physicianSchema = {
   medicalSpecialty: "Cardiovascular",
   url: siteOrigin.toString(),
   image: ogImageUrl,
-  telephone: site.phone,
+  telephone: site.phoneHref,
   address: {
     "@type": "PostalAddress",
     streetAddress: site.addressLine1,
@@ -122,7 +133,8 @@ const physicianSchema = {
     <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={shareDescription} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImageUrl} />
