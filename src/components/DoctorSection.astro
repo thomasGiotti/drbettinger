@@ -1,6 +1,6 @@
 ---
 import SectionTitle from "./SectionTitle.astro";
-import VascularArt from "./VascularArt.astro";
+import DoctorPortrait from "./DoctorPortrait.astro";
 import { site } from "../data/site.js";
 ---
 
@@ -10,15 +10,14 @@ import { site } from "../data/site.js";
 
     <div class="grid grid-cols-1 items-start gap-14 lg:grid-cols-[320px_1fr]">
       <div class="mx-auto lg:mx-0">
-        <!-- Remplacer par : portrait réel du praticien, noir et blanc -->
-        <VascularArt variant="portrait" class="h-72 w-72 rounded-full shadow-xl" />
+        <DoctorPortrait class="h-72 w-72 rounded-full shadow-xl" />
       </div>
 
       <div class="max-w-2xl">
         <p class="text-lg leading-relaxed text-ink">
           {site.doctorName} est médecin <strong>angiologue</strong>, spécialiste du diagnostic et du
           traitement des pathologies veineuses, artérielles et lymphatiques. Installé{" "}
-          {site.city !== "[Ville]" ? `à ${site.city}` : "[à préciser]"}, {site.doctorName} propose une prise en
+          à {site.city}, {site.doctorName} propose une prise en
           charge attentive, fondée sur un examen clinique approfondi et, lorsque nécessaire, un
           écho-doppler réalisé directement au cabinet.
         </p>

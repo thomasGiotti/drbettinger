@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import SectionTitle from "../components/SectionTitle.astro";
-import VascularArt from "../components/VascularArt.astro";
+import DoctorPortrait from "../components/DoctorPortrait.astro";
 import CtaButton from "../components/CtaButton.astro";
 import { site } from "../data/site.js";
 
@@ -17,11 +17,7 @@ const description = `Parcours, diplômes et philosophie de soin de ${site.doctor
     <div class="mx-auto max-w-7xl px-6 lg:px-10">
       <div class="grid grid-cols-1 items-start gap-14 lg:grid-cols-[320px_1fr]">
         <div class="mx-auto lg:mx-0">
-          <!-- Remplacer par : portrait réel du praticien, noir et blanc -->
-          <VascularArt
-            variant="portrait"
-            class="h-72 w-72 rounded-full shadow-xl"
-          />
+          <DoctorPortrait class="h-72 w-72 rounded-full shadow-xl" />
         </div>
 
         <div class="max-w-2xl">

@@ -33,9 +33,8 @@ const postalCode = addressMatch ? addressMatch[1] : "";
 const addressLocality = addressMatch ? addressMatch[2] : site.city;
 
 // Convertit les horaires de site.js en OpeningHoursSpecification.
-// Les valeurs encore entre crochets (ex. "[9h00 – 18h00]") sont des
-// placeholders non finalisés : on les ignore tant qu'elles n'ont pas été
-// renseignées, plutôt que de publier une donnée structurée inexacte.
+// Tant que les horaires ne sont pas confirmés (site.hoursConfirmed), on ne
+// les publie pas, plutôt que de diffuser une donnée structurée inexacte.
 const dayNameToSchema: Record<string, string> = {
   lundi: "Monday",
   mardi: "Tuesday",
@@ -61,8 +60,8 @@ function parseDayRange(day: string): string[] {
   return dayNameToSchema[single] ? [dayNameToSchema[single]] : [];
 }
 
-const openingHoursSpecification = site.hours
-  .filter((h) => !h.hours.includes("[") && !/ferm[ée]/i.test(h.hours))
+const openingHoursSpecification = (site.hoursConfirmed ? site.hours : [])
+  .filter((h) => !/ferm[ée]/i.test(h.hours))
   .map((h) => {
     const match = h.hours.match(/(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/);
     const dayOfWeek = parseDayRange(h.day);

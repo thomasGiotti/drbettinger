@@ -1,7 +1,8 @@
 // ---------------------------------------------------------------------------
 // Toutes les informations réelles du cabinet sont centralisées ici.
-// Remplacez les valeurs entre crochets [ ] puis vérifiez les pages
-// "Mentions légales" et "Contact" qui affichent aussi certaines de ces infos.
+// Les points restant à confirmer sont signalés par un commentaire TODO.
+// Vérifiez aussi les pages "Mentions légales" et "Contact" qui affichent
+// certaines de ces infos.
 // ---------------------------------------------------------------------------
 
 export const site = {
@@ -15,12 +16,17 @@ export const site = {
   fullAddress: "11 Place Jeanne Mance, 52200 Langres",
   phone: "03 25 88 44 58",
   phoneHref: "+33325884458",
+  // TODO : horaires à confirmer avec le cabinet, puis passer hoursConfirmed
+  // à true pour les publier aussi dans les données structurées (JSON-LD).
   hours: [
-    { day: "Lundi – Vendredi", hours: "[9h00 – 18h00]" },
-    { day: "Samedi", hours: "[Sur rendez-vous]" },
+    { day: "Lundi – Vendredi", hours: "9h00 – 18h00" },
+    { day: "Samedi", hours: "Sur rendez-vous" },
     { day: "Dimanche", hours: "Fermé" },
   ],
-  access: "[Accès : métro/bus à préciser, parking à proximité]",
+  hoursConfirmed: false,
+  // TODO : informations d'accès réelles à fournir (stationnement, transports).
+  // Laissé vide, le bloc « Accès » n'est pas affiché sur la page Contact.
+  access: "",
   // Information factuelle sur les conditions d'exercice, à présenter sans
   // superlatif ni argument commercial (pas de "matériel de pointe", etc.).
   equipment:
