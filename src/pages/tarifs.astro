@@ -63,9 +63,9 @@ const fees = [
         <ul class="divide-y divide-ink-soft/10 border-y border-ink-soft/10">
           {
             fees.map((f) => (
-              <li class="flex items-center justify-between gap-6 py-4">
+              <li class="flex flex-col gap-1 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
                 <span class="text-ink">{f.label}</span>
-                <span class="shrink-0 font-serif text-navy">{f.value}</span>
+                <span class="font-serif text-navy sm:shrink-0">{f.value}</span>
               </li>
             ))
           }
