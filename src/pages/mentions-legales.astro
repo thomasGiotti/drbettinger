@@ -18,11 +18,12 @@ const description = "Mentions légales du site du cabinet médical.";
         <h2 class="font-serif text-2xl text-ink">Éditeur du site</h2>
         <p class="mt-4 text-ink-soft">
           {site.doctorName}<br />
-          {site.legalFormName}<br />
           {site.addressLine1}, {site.addressLine2}<br />
           Téléphone : {site.phone}<br />
           Numéro RPPS : {site.rpps}<br />
-          Médecin inscrit à l'Ordre des Médecins du [département / région à préciser]
+          {/* TODO : département d'inscription à l'Ordre à confirmer avec le Dr Bettinger. */}
+          Médecin inscrit au tableau du Conseil départemental de l'Ordre des
+          médecins de la Haute-Marne
         </p>
       </div>
 
@@ -35,17 +36,31 @@ const description = "Mentions légales du site du cabinet médical.";
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Hébergement</h2>
+        {/* TODO : coordonnées de l'hébergeur à revérifier sur vercel.com/legal avant livraison. */}
         <p class="mt-4 text-ink-soft">
-          [Nom de l'hébergeur]<br />
-          [Adresse de l'hébergeur]<br />
-          [Téléphone de l'hébergeur]
+          Vercel Inc.<br />
+          440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br />
+          Site :{" "}
+          <a
+            href="https://vercel.com"
+            class="text-navy underline"
+            target="_blank"
+            rel="noopener noreferrer">vercel.com</a
+          ><br />
+          Téléphone : +1 559 288 7060
         </p>
       </div>
 
       <div>
         <h2 class="font-serif text-2xl text-ink">Conception et réalisation</h2>
         <p class="mt-4 text-ink-soft">
-          [Nom / société de conception du site, si souhaité]
+          Giotti Studio —{" "}
+          <a
+            href="https://giotti.fr"
+            class="text-navy underline"
+            target="_blank"
+            rel="noopener noreferrer">giotti.fr</a
+          >
         </p>
       </div>
 

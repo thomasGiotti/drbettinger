@@ -53,7 +53,6 @@ export const site = {
     "Dépistage et suivi des maladies anévrismales",
     "Dépistage et prise en charge des phlébites, y compris les formes héréditaires (thrombophilies)",
   ],
-  legalFormName: "[Nom de la structure d'exercice, le cas échéant]",
 };
 
 export const nav = [
