@@ -17,7 +17,7 @@ export function getStaticPaths() {
 
 const { pathology } = Astro.props;
 
-const title = `${pathology.cardTitle} - ${site.doctorName}, angiologue à ${site.city}`;
+const title = pathology.seoTitle ?? pathology.cardTitle;
 const description = pathology.cardDesc;
 
 const illustrationBySlug = {

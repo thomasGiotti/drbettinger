@@ -11,14 +11,20 @@ import Footer from "../components/Footer.astro";
 import { site } from "../data/site.js";
 
 interface Props {
+  /** Titre court de la page : le suffixe « | Dr Bettinger, angiologue Langres » est ajouté automatiquement (viser 60 caractères au total). */
   title: string;
+  /** Titre complet utilisé tel quel, sans suffixe (ex. page d'accueil). */
+  fullTitle?: string;
   description: string;
   /** Description dédiée au partage social (og:description / twitter:description), plus courte et distincte du meta description SEO. À défaut, réutilise `description`. */
   socialDescription?: string;
   /** N'injecter le balisage Schema.org (JSON-LD) que sur les pages qui en ont besoin (accueil, contact). */
   schema?: boolean;
+  /** Exclut la page des moteurs de recherche (noindex) et omet la balise canonical (ex. page 404). */
+  noindex?: boolean;
 }
-const { title, description, socialDescription, schema = false } = Astro.props;
+const { title, fullTitle, description, socialDescription, schema = false, noindex = false } = Astro.props;
+const pageTitle = fullTitle ?? `${title} | Dr ${site.doctorLastName}, angiologue ${site.city}`;
 const shareDescription = socialDescription ?? description;
 
 const siteOrigin = Astro.site ?? new URL("https://example.fr");
@@ -111,10 +117,10 @@ const physicianSchema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta property="og:site_name" content={siteName} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={shareDescription} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
@@ -124,11 +130,11 @@ const physicianSchema = {
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={shareDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow"} />
+    {!noindex && <link rel="canonical" href={canonicalUrl} />}
     {schema && (
       <script type="application/ld+json" set:html={JSON.stringify(physicianSchema)} />
     )}

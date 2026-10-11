@@ -2,11 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import { articles } from "../../data/articles.js";
-import { site } from "../../data/site.js";
 
-const title = `Actualités - ${site.doctorName}, angiologue à ${site.city}`;
+const title = "Actualités santé";
 const description =
-  "Articles de vulgarisation sur les pathologies vasculaires et la santé veineuse et artérielle.";
+  "Articles de vulgarisation du Dr Stéphane Bettinger, angiologue à Langres, sur les pathologies vasculaires et la santé de vos veines et artères.";
 
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   day: "numeric",

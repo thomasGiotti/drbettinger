@@ -22,6 +22,8 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-troncs-supra-aortiques",
+    // Titre court pour la balise <title> (60 caractères max avec le suffixe).
+    seoTitle: "Doppler supra-aortique",
     icon: "artery",
     navTitle: "Écho-doppler des troncs supra-aortiques",
     cardTitle: "Écho-doppler artériel des troncs supra-aortiques",
@@ -40,6 +42,7 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-membres-superieurs",
+    seoTitle: "Doppler artériel des bras",
     icon: "artery",
     navTitle: "Écho-doppler artériel des membres supérieurs",
     cardTitle: "Écho-doppler artériel des membres supérieurs",
@@ -58,6 +61,7 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-aortique-visceral",
+    seoTitle: "Écho-doppler aortique",
     icon: "aorta",
     navTitle: "Écho-doppler aortique et des branches viscérales",
     cardTitle: "Écho-doppler aortique et des branches viscérales",
@@ -76,6 +80,7 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-arteriel-membres-inferieurs",
+    seoTitle: "Doppler artériel jambes",
     icon: "artery",
     navTitle: "Écho-doppler artériel des membres inférieurs",
     cardTitle: "Écho-doppler artériel des membres inférieurs",
@@ -94,6 +99,7 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-veineux-membres-inferieurs",
+    seoTitle: "Doppler veineux jambes",
     icon: "vein",
     navTitle: "Écho-doppler veineux des membres inférieurs",
     cardTitle: "Écho-doppler veineux des membres inférieurs",
@@ -112,6 +118,7 @@ export const pathologies = [
   },
   {
     slug: "echo-doppler-veineux-membres-superieurs",
+    seoTitle: "Doppler veineux des bras",
     icon: "vein",
     navTitle: "Écho-doppler veineux des membres supérieurs",
     cardTitle: "Écho-doppler veineux des membres supérieurs",
@@ -130,6 +137,7 @@ export const pathologies = [
   },
   {
     slug: "pressotherapie-oedeme-jambes",
+    seoTitle: "Pressothérapie des jambes",
     icon: "compression",
     navTitle: "Pressothérapie pour œdème des jambes",
     cardTitle: "Pressothérapie pour œdème des jambes",
@@ -149,6 +157,7 @@ export const pathologies = [
   },
   {
     slug: "capillaroscopie-peri-ungueale",
+    seoTitle: "Capillaroscopie",
     icon: "loupe",
     navTitle: "Capillaroscopie péri-unguéale",
     cardTitle: "Capillaroscopie péri-unguéale",
@@ -186,6 +195,7 @@ export const pathologies = [
   },
   {
     slug: "depistage-anevrisme",
+    seoTitle: "Dépistage d'anévrisme",
     icon: "shield",
     navTitle: "Dépistage des maladies anévrismales",
     cardTitle: "Dépistage et suivi des maladies anévrismales",
@@ -205,6 +215,7 @@ export const pathologies = [
   },
   {
     slug: "phlebites-thrombophilies",
+    seoTitle: "Phlébites, thrombophilies",
     icon: "clot",
     navTitle: "Phlébites & thrombophilies",
     cardTitle: "Phlébites et thrombophilies (formes héréditaires)",

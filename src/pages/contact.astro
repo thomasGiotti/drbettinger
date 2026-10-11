@@ -8,8 +8,8 @@ import EmergencyNotice from "../components/EmergencyNotice.astro";
 import MapEmbed from "../components/MapEmbed.astro";
 import { site } from "../data/site.js";
 
-const title = `Contact - ${site.doctorName}, angiologue à ${site.city}`;
-const description = `Coordonnées, horaires et accès du cabinet de ${site.doctorName} à ${site.city}.`;
+const title = "Contact et horaires";
+const description = `Coordonnées et horaires du cabinet de ${site.doctorName}, angiologue à ${site.city}. Rendez-vous uniquement par téléphone au ${site.phone}.`;
 ---
 
 <BaseLayout title={title} description={description} schema>

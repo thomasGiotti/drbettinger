@@ -3,8 +3,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
 import { site } from "../data/site.js";
 
-const title = `Mentions légales - ${site.doctorName}`;
-const description = "Mentions légales du site du cabinet médical.";
+const title = "Mentions légales";
+const description = `Mentions légales du site de ${site.doctorName}, angiologue à ${site.city} : éditeur, directeur de la publication, hébergeur et conception.`;
 ---
 
 <BaseLayout title={title} description={description}>

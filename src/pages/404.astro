@@ -2,13 +2,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PulsePattern from "../components/PulsePattern.astro";
 import CtaButton from "../components/CtaButton.astro";
-import { site } from "../data/site.js";
 
-const title = `Page introuvable - ${site.doctorName}`;
+const title = "Page introuvable";
 const description = "Cette page n'existe pas ou plus.";
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex>
   <section
     class="relative flex h-full min-h-[70vh] flex-col justify-center overflow-hidden bg-navy py-40"
   >

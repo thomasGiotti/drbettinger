@@ -1,6 +1,11 @@
 export const articles = [
   {
     slug: "comprendre-la-microcirculation-sanguine",
+    // Titre court pour la balise <title> (60 caractères max avec le suffixe).
+    seoTitle: "Microcirculation sanguine",
+    // Meta-description dédiée (~150 caractères), l'extrait étant trop long.
+    seoDescription:
+      "La microcirculation sanguine expliquée simplement : son rôle, pourquoi elle peut se détériorer, les signes qui doivent alerter et comment l'évaluer.",
     title: "Comprendre la microcirculation sanguine",
     date: "2026-09-08",
     author: "Dr Stéphane Bettinger",
@@ -77,6 +82,7 @@ export const articles = [
   },
   {
     slug: "marche-et-veines",
+    seoTitle: "Marche et santé veineuse",
     title: "Pourquoi la marche est bénéfique pour vos veines",
     date: "2026-03-10",
     excerpt:
@@ -89,6 +95,7 @@ export const articles = [
   },
   {
     slug: "comprendre-echo-doppler",
+    seoTitle: "L'écho-doppler expliqué",
     title: "Comprendre l'écho-doppler en 5 questions",
     date: "2026-02-18",
     excerpt:
@@ -103,6 +110,7 @@ export const articles = [
   },
   {
     slug: "idees-recues-bas-de-contention",
+    seoTitle: "Contention : idées reçues",
     title: "Bas de contention : 4 idées reçues à corriger",
     date: "2026-01-22",
     excerpt:

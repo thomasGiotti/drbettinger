@@ -25,8 +25,8 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
 const blocks = article.content ?? article.body.map((text) => ({ type: "p", text }));
 const hasNote = blocks.some((b) => b.type === "note");
 
-const title = `${article.title} - ${site.doctorName}`;
-const description = article.excerpt;
+const title = article.seoTitle ?? article.title;
+const description = article.seoDescription ?? article.excerpt;
 ---
 
 <BaseLayout title={title} description={description}>

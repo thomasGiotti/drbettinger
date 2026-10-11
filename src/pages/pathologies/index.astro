@@ -3,11 +3,10 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import PathologyCard from "../../components/PathologyCard.astro";
 import { pathologies } from "../../data/pathologies.js";
-import { site } from "../../data/site.js";
 
-const title = `Examens & actes - ${site.doctorName}, angiologue à ${site.city}`;
+const title = "Examens et actes";
 const description =
-  "Écho-doppler transcrânien, des troncs supra-aortiques, des membres, aortique et viscéral, veineux, pénien ; dépistage d'anévrisme ; phlébites et thrombophilies : les examens vasculaires réalisés au cabinet.";
+  "Écho-doppler artériel et veineux, transcrânien, aortique ou pénien, capillaroscopie, pressothérapie : les examens vasculaires réalisés au cabinet.";
 ---
 
 <BaseLayout title={title} description={description}>
