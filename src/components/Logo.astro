@@ -9,7 +9,8 @@ interface Props {
 }
 const { variant = "light", class: className = "" } = Astro.props;
 const textColor = variant === "light" ? "text-white" : "text-navy";
-const ring = variant === "light" ? "#FFFFFF" : "#123A5C";
+// Classes plutôt qu'un attribut style : compatible avec la CSP (pas d'unsafe-inline).
+const ringClass = variant === "light" ? "border-white" : "border-navy";
 const wave = "#F0D8BC";
 const initials = `${site.doctorFirstName?.[0] ?? "S"}${site.doctorLastName?.[0] ?? "B"}`;
 ---
@@ -20,8 +21,7 @@ const initials = `${site.doctorFirstName?.[0] ?? "S"}${site.doctorLastName?.[0] 
   aria-label={`${site.doctorName} - Accueil`}
 >
   <span
-    class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border"
-    style={`border-color:${ring}`}
+    class={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full border ${ringClass}`}
   >
     <svg viewBox="0 0 40 40" class="h-6 w-6" fill="none" aria-hidden="true">
       <path
