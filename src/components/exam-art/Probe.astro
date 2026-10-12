@@ -1,0 +1,30 @@
+---
+// Sonde d'écho-doppler : reprise exacte de celle du hero (corps clair,
+// embout crème, câble fin), positionnée par translation / rotation.
+import { palette } from "./art.js";
+
+interface Props {
+  x: number;
+  y: number;
+  rotate?: number;
+  scale?: number;
+  /** Sens du câble : vers la gauche (-1) ou vers la droite (1). */
+  cable?: -1 | 1;
+}
+const { x, y, rotate = 0, scale = 0.85, cable = -1 } = Astro.props;
+const c = cable;
+---
+
+<g transform={`translate(${x},${y}) rotate(${rotate}) scale(${scale})`} opacity="0.95">
+  <rect x="0" y="0" width="30" height="100" rx="14" fill={palette.line} />
+  <rect x="-5" y="90" width="40" height="26" rx="6" fill={palette.accent} />
+  <path
+    class="ea-cable"
+    d={`M15 0 C ${15 + c * 4} -40, ${15 + c * 46} -52, ${15 + c * 84} -44`}
+    stroke={palette.line}
+    stroke-width="3"
+    fill="none"
+    stroke-linecap="round"
+    stroke-opacity="0.55"
+  />
+</g>

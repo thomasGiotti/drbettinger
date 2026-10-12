@@ -46,12 +46,14 @@ const overHero = currentPath === "/";
           class="invisible absolute left-1/2 top-full w-72 -translate-x-1/2 pt-4 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
         >
           <ul class="rounded-sm bg-white p-2 text-left shadow-xl ring-1 ring-black/5">
-            <li>
+            <!-- Le filet de séparation est porté par ce premier élément : un
+                 <li> vide serait lu comme un élément de liste vide (puce ou
+                 tiret sans texte en mode lecture et aux lecteurs d'écran). -->
+            <li class="mb-1 border-b border-ink-soft/10 pb-1">
               <a href="/pathologies/" class="block rounded-sm px-4 py-2.5 font-serif text-sm text-navy hover:bg-accent/40">
                 Tous les examens &amp; actes
               </a>
             </li>
-            <li class="my-1 border-t border-ink-soft/10"></li>
             {pathologies.map((p) => (
               <li>
                 <a

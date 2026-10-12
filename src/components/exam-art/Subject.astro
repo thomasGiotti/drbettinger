@@ -1,0 +1,436 @@
+---
+// Sujets des illustrations d'examens, dans le registre de VascularArt :
+// silhouette translucide bordée de crème, vaisseau principal clair (2,6),
+// branches plus fines (1,6, opacité 0,7), points crème aux jonctions.
+// Schémas d'art, pas planches d'anatomie : seules les grandes lignes comptent.
+import { palette } from "./art.js";
+import Dots from "./Dots.astro";
+import Loupe from "./Loupe.astro";
+
+interface Props {
+  subject: string;
+  /** Préfixe des identifiants SVG (dégradés, découpes). */
+  uid: string;
+}
+const { subject, uid } = Astro.props;
+const body = `url(#${uid}-body)`;
+const bodyH = `url(#${uid}-body-h)`;
+const { line, accent } = palette;
+
+// Silhouettes réutilisées.
+const legPath =
+  "M-20 96 C 120 100, 300 128, 440 150 C 500 159, 560 140, 640 146 C 700 151, 736 160, 766 164 C 786 150, 796 124, 802 98 C 806 80, 826 72, 840 84 C 852 118, 852 180, 846 218 C 842 250, 820 270, 790 270 C 762 268, 748 258, 738 248 C 700 246, 660 256, 618 266 C 560 280, 500 264, 444 262 C 330 272, 160 302, -20 322 Z";
+const armPath =
+  "M-20 122 C 120 122, 260 140, 380 158 C 440 166, 500 170, 580 168 C 640 167, 690 168, 724 168 C 744 164, 758 158, 772 148 C 790 134, 808 122, 824 122 C 840 124, 838 142, 822 154 C 850 156, 892 162, 918 178 C 944 194, 944 222, 920 232 C 890 244, 840 250, 800 250 C 770 250, 744 246, 722 240 C 640 242, 520 250, 420 252 C 300 254, 140 274, -20 296 Z";
+---
+
+{
+  subject === "head" && (
+    <g>
+      {/* Tête de profil, tournée vers la droite. */}
+      <path
+        class="ea-body"
+        d="M330 470 C 322 420, 296 380, 296 300 C 296 160, 380 64, 480 64 C 560 64, 606 112, 612 176 C 614 196, 622 212, 636 236 C 642 246, 636 252, 622 254 C 620 270, 618 290, 606 304 C 596 314, 570 316, 556 318 C 548 350, 548 400, 556 470 Z"
+        fill={body}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      {/* Carotide interne et vertébrale montant du cou. */}
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path class="ea-main" d="M470 470 C 468 400, 482 330, 470 290 C 462 266, 452 252, 452 232" stroke-width="2.6" />
+        <path class="ea-branch" d="M410 470 C 406 400, 418 330, 430 290 C 436 270, 440 258, 438 246" stroke-width="1.6" stroke-opacity="0.7" />
+        {/* Cercle artériel à la base du cerveau. */}
+        <path
+          class="ea-branch"
+          d="M452 232 C 470 226, 486 214, 488 198 C 484 184, 468 176, 452 176 C 432 176, 414 184, 412 200 C 414 216, 428 230, 438 246"
+          stroke-width="1.6"
+          stroke-opacity="0.8"
+        />
+        {/* Artères cérébrales, courbes fines vers le cortex. */}
+        <path class="ea-branch" d="M488 198 C 520 180, 548 150, 556 112" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M470 177 C 476 140, 470 112, 452 92" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M412 200 C 384 186, 356 168, 340 136" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-fine" d="M412 210 C 380 222, 352 246, 336 284" stroke-width="1.2" stroke-opacity="0.5" />
+        <path class="ea-fine" d="M520 180 C 548 186, 574 204, 590 226" stroke-width="1.2" stroke-opacity="0.5" />
+      </g>
+      <Dots points={[[452, 232], [488, 198], [556, 112], [452, 92], [340, 136], [336, 284]]} />
+    </g>
+  )
+}
+
+{
+  subject === "neck" && (
+    <g>
+      {/* Bas du visage, cou et épaules, de face. */}
+      <path
+        class="ea-body"
+        d="M366 -20 C 368 46, 398 98, 450 104 C 502 98, 532 46, 534 -20 Z"
+        fill={body}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      <path
+        class="ea-body"
+        d="M396 84 C 398 170, 394 238, 378 284 C 326 324, 214 334, 122 362 C 72 378, 44 414, 34 470 L 866 470 C 856 414, 828 378, 778 362 C 686 334, 574 324, 522 284 C 506 238, 502 170, 504 84"
+        fill={body}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        {/* Crosse de l'aorte. */}
+        <path class="ea-main" d="M320 470 C 330 418, 384 384, 452 382 C 522 384, 574 418, 586 470" stroke-width="2.6" />
+        {/* Carotides communes puis internes / externes. */}
+        <path class="ea-main" d="M392 392 C 400 330, 414 260, 418 168 C 420 110, 420 50, 420 -20" stroke-width="2.6" />
+        <path class="ea-main" d="M482 383 C 486 320, 484 250, 482 168 C 481 110, 480 50, 480 -20" stroke-width="2.6" />
+        <path class="ea-branch" d="M418 168 C 406 120, 394 74, 382 20" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M482 168 C 494 120, 506 74, 518 20" stroke-width="1.6" stroke-opacity="0.7" />
+        {/* Sous-clavières et vertébrales. */}
+        <path class="ea-branch" d="M392 392 C 340 380, 250 380, 150 402" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M548 396 C 600 380, 680 378, 770 400" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-fine" d="M352 374 C 360 300, 386 240, 398 150 C 404 100, 404 50, 404 -20" stroke-width="1.2" stroke-opacity="0.5" />
+        <path class="ea-fine" d="M566 382 C 548 300, 510 240, 500 150 C 496 100, 496 50, 496 -20" stroke-width="1.2" stroke-opacity="0.5" />
+      </g>
+      <Dots points={[[418, 168], [482, 168], [382, 20], [518, 20], [150, 402], [770, 400], [392, 392]]} />
+    </g>
+  )
+}
+
+{
+  (subject === "arm-arteries" || subject === "arm-veins") && (
+    <g>
+      <path class="ea-body" d={armPath} fill={bodyH} stroke={accent} stroke-opacity="0.22" stroke-width="1.5" />
+      {subject === "arm-arteries" ? (
+        <>
+          <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+            {/* Axillaire puis humérale, qui se divise au pli du coude. */}
+            <path class="ea-main" d="M-20 206 C 120 206, 280 210, 430 212" stroke-width="2.6" />
+            <path class="ea-main" d="M430 212 C 540 200, 640 194, 724 192 C 774 190, 820 192, 862 200" stroke-width="2.6" />
+            <path class="ea-branch" d="M430 212 C 540 226, 640 232, 724 226 C 774 222, 820 218, 862 212" stroke-width="1.6" stroke-opacity="0.7" />
+            <path class="ea-fine" d="M862 200 C 884 204, 884 210, 862 212" stroke-width="1.2" stroke-opacity="0.5" />
+            <path class="ea-fine" d="M180 207 C 240 226, 300 238, 370 240" stroke-width="1.2" stroke-opacity="0.5" />
+          </g>
+          <Dots points={[[430, 212], [180, 207], [862, 200], [862, 212], [724, 192]]} />
+        </>
+      ) : (
+        <>
+          <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+            {/* Veines céphalique (dessus) et basilique (dessous), reliées au coude. */}
+            <path class="ea-main" d="M-20 150 C 140 156, 290 170, 410 182 C 520 190, 630 186, 730 186 C 780 180, 820 176, 860 178" stroke-width="2.6" />
+            <path class="ea-main" d="M-20 262 C 140 254, 290 240, 420 236 C 530 234, 630 232, 730 226 C 780 222, 820 218, 860 214" stroke-width="2.6" stroke-opacity="0.85" />
+            <path class="ea-branch" d="M380 180 C 412 196, 444 218, 470 235" stroke-width="1.6" stroke-opacity="0.7" />
+            <path class="ea-fine" d="M560 189 C 590 204, 614 218, 640 230" stroke-width="1.2" stroke-opacity="0.5" />
+          </g>
+          {/* Valvules : petits replis orientés vers le cœur. */}
+          <g stroke={accent} fill="none" stroke-linecap="round" stroke-opacity="0.75">
+            {[[230, 163], [560, 189], [250, 247], [600, 233]].map(([x, y]) => (
+              <path class="ea-fine" d={`M${x + 9} ${y - 8} L${x} ${y} L${x + 9} ${y + 8}`} stroke-width="1.6" />
+            ))}
+          </g>
+          <Dots points={[[380, 180], [470, 235], [860, 178], [860, 214]]} />
+        </>
+      )}
+    </g>
+  )
+}
+
+{
+  subject === "aorta" && (
+    <g>
+      {/* Tronc, de face. */}
+      <path
+        class="ea-body"
+        d="M290 -20 C 300 80, 330 170, 334 250 C 336 320, 300 390, 286 470 L 614 470 C 600 390, 564 320, 566 250 C 570 170, 600 80, 610 -20 Z"
+        fill={body}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      {/* Reins, simples contours. */}
+      <g fill="none" stroke={accent} stroke-opacity="0.3" stroke-width="1.5" class="ea-body">
+        <path d="M372 150 C 344 146, 334 176, 340 204 C 346 230, 372 238, 384 222 C 376 206, 378 182, 386 168 C 384 156, 380 151, 372 150 Z" />
+        <path d="M528 150 C 556 146, 566 176, 560 204 C 554 230, 528 238, 516 222 C 524 206, 522 182, 514 168 C 516 156, 520 151, 528 150 Z" />
+      </g>
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path class="ea-main" d="M450 -20 C 452 80, 448 200, 450 330" stroke-width="2.6" />
+        <path class="ea-main" d="M450 330 C 432 370, 410 410, 392 470" stroke-width="2.6" />
+        <path class="ea-main" d="M450 330 C 468 370, 490 410, 508 470" stroke-width="2.6" />
+        {/* Tronc cœliaque, mésentériques, rénales. */}
+        <path class="ea-branch" d="M451 92 C 476 88, 494 76, 500 58" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M451 92 C 428 86, 410 74, 402 56" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M450 122 C 476 150, 488 200, 482 270" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M449 186 C 426 186, 404 188, 384 192" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M451 186 C 474 186, 496 188, 516 192" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-fine" d="M450 280 C 432 300, 422 320, 420 350" stroke-width="1.2" stroke-opacity="0.5" />
+      </g>
+      <Dots points={[[451, 92], [500, 58], [402, 56], [482, 270], [384, 192], [516, 192], [450, 330]]} />
+    </g>
+  )
+}
+
+{
+  (subject === "leg-arteries" || subject === "leg-veins" || subject === "pressotherapy") && (
+    <g>
+      <path class="ea-body" d={legPath} fill={bodyH} stroke={accent} stroke-opacity="0.22" stroke-width="1.5" />
+
+      {subject === "leg-arteries" && (
+        <>
+          <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+            {/* Fémorale, poplitée, puis artères de la jambe jusqu'au pied. */}
+            <path class="ea-main" d="M-20 196 C 120 198, 270 204, 400 214 C 450 218, 490 220, 530 218" stroke-width="2.6" />
+            <path class="ea-main" d="M530 218 C 610 196, 690 184, 760 190 C 790 192, 806 168, 814 130 C 818 114, 822 104, 826 96" stroke-width="2.6" />
+            <path class="ea-branch" d="M530 218 C 610 236, 690 244, 750 240 C 776 238, 798 246, 812 256" stroke-width="1.6" stroke-opacity="0.7" />
+            <path class="ea-branch" d="M140 199 C 200 226, 252 250, 330 260" stroke-width="1.6" stroke-opacity="0.7" />
+            <path class="ea-fine" d="M574 228 C 640 216, 700 214, 740 216" stroke-width="1.2" stroke-opacity="0.5" />
+          </g>
+          <Dots points={[[530, 218], [140, 199], [330, 260], [826, 96], [812, 256]]} />
+        </>
+      )}
+
+      {subject === "leg-veins" && (
+        <>
+          <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+            {/* Grande veine saphène (face interne) et petite saphène (mollet). */}
+            <path class="ea-main" d="M-20 252 C 120 248, 270 238, 400 238 C 480 238, 540 252, 620 248 C 690 244, 730 232, 756 220" stroke-width="2.6" />
+            <path class="ea-branch" d="M440 206 C 530 190, 630 178, 740 198" stroke-width="1.6" stroke-opacity="0.7" />
+            <path class="ea-fine" d="M260 242 C 300 220, 330 200, 360 186" stroke-width="1.2" stroke-opacity="0.5" />
+            <path class="ea-fine" d="M560 250 C 590 230, 610 210, 620 186" stroke-width="1.2" stroke-opacity="0.5" />
+          </g>
+          <g stroke={accent} fill="none" stroke-linecap="round" stroke-opacity="0.75">
+            {[[150, 247], [560, 250], [680, 187]].map(([x, y]) => (
+              <path class="ea-fine" d={`M${x + 9} ${y - 8} L${x} ${y} L${x + 9} ${y + 8}`} stroke-width="1.6" />
+            ))}
+          </g>
+          <Dots points={[[440, 206], [756, 220], [360, 186], [620, 186]]} />
+          {/* Médaillon : une valvule veineuse, deux replis souples. */}
+          <Loupe id={`${uid}-loupe`} cx={880} cy={110} r={82} from={[400, 238]}>
+            <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+              <path class="ea-main" d="M790 84 C 840 80, 920 80, 970 84" stroke-width="2.6" />
+              <path class="ea-main" d="M790 136 C 840 140, 920 140, 970 136" stroke-width="2.6" />
+              <path class="ea-branch" d="M904 82 C 884 96, 862 104, 846 108" stroke-width="1.8" stroke-opacity="0.85" />
+              <path class="ea-branch" d="M904 138 C 884 124, 862 116, 846 112" stroke-width="1.8" stroke-opacity="0.85" />
+            </g>
+            <path
+              d="M960 110 h-34 M826 110 h-30"
+              stroke={accent}
+              stroke-opacity="0.6"
+              stroke-dasharray="2 6"
+              stroke-linecap="round"
+              fill="none"
+              class="ea-fine"
+            />
+          </Loupe>
+        </>
+      )}
+
+      {subject === "pressotherapy" && (
+        <>
+          {/* Manchon : enveloppe souple autour de la jambe, en compartiments
+              qui se gonflent l'un après l'autre (de la cheville vers la cuisse). */}
+          <g fill={accent}>
+            {[
+              { d: "M640 128 C 690 130, 736 144, 772 152 C 786 196, 786 236, 772 280 C 730 276, 684 280, 640 290 C 630 236, 630 180, 640 128 Z", o: 0.12 },
+              { d: "M530 128 C 570 126, 606 124, 640 128 C 630 180, 630 236, 640 290 C 600 298, 566 298, 530 292 C 520 236, 520 180, 530 128 Z", o: 0.08 },
+              { d: "M420 122 C 460 130, 496 132, 530 128 C 520 180, 520 236, 530 292 C 494 286, 456 284, 420 286 C 410 232, 410 176, 420 122 Z", o: 0.05 },
+              { d: "M300 104 C 340 110, 380 116, 420 122 C 410 176, 410 232, 420 286 C 380 288, 340 294, 300 300 C 290 236, 290 168, 300 104 Z", o: 0.03 },
+            ].map(({ d, o }) => (
+              <path d={d} fill-opacity={o} />
+            ))}
+          </g>
+          <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+            <path
+              class="ea-main"
+              d="M300 104 C 420 122, 520 132, 640 128 C 690 130, 736 144, 772 152 C 790 196, 790 236, 772 280 C 730 276, 684 280, 640 290 C 540 302, 420 280, 300 300 C 280 240, 280 166, 300 104 Z"
+              stroke-width="2"
+              stroke-opacity="0.75"
+            />
+            {["M420 122 C 410 176, 410 232, 420 286", "M530 128 C 520 180, 520 236, 530 292", "M640 128 C 630 180, 630 236, 640 290"].map((d) => (
+              <path class="ea-branch" d={d} stroke-width="1.6" stroke-opacity="0.6" />
+            ))}
+          </g>
+          {/* Tuyau d'air, fin et sinueux, comme le câble de la sonde. */}
+          <path
+            class="ea-cable"
+            d="M360 112 C 352 64, 300 34, 230 30 C 180 28, 140 40, 100 30"
+            stroke={line}
+            stroke-width="3"
+            stroke-opacity="0.55"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <Dots points={[[360, 112], [772, 152], [772, 280]]} />
+        </>
+      )}
+    </g>
+  )
+}
+
+{
+  subject === "finger" && (
+    <g>
+      {/* Doigt vu de dessus, ongle à l'extrémité. */}
+      <path
+        class="ea-body"
+        d="M-20 150 C 160 144, 380 148, 500 156 C 566 160, 612 184, 618 222 C 624 262, 586 290, 520 294 C 400 300, 170 306, -20 302 Z"
+        fill={bodyH}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      <path
+        class="ea-main"
+        d="M486 174 C 528 172, 570 184, 588 206 C 600 222, 598 242, 586 256 C 568 274, 526 278, 486 274 C 476 244, 476 204, 486 174 Z"
+        fill="none"
+        stroke={line}
+        stroke-width="2.6"
+        stroke-linejoin="round"
+        opacity="0.92"
+      />
+      {/* Repli de peau au bord de l'ongle, là où l'on observe les capillaires. */}
+      <path class="ea-branch" d="M470 168 C 456 200, 456 248, 470 280" stroke={accent} stroke-opacity="0.6" stroke-width="1.6" fill="none" stroke-dasharray="2 6" stroke-linecap="round" />
+      <g stroke={line} fill="none" stroke-linecap="round" opacity="0.92">
+        <path class="ea-branch" d="M-20 196 C 120 192, 280 196, 440 204" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M-20 256 C 120 260, 280 256, 440 246" stroke-width="1.6" stroke-opacity="0.7" />
+      </g>
+      <Dots points={[[440, 204], [440, 246]]} />
+      {/* Médaillon : rangée de capillaires en épingle à cheveux. */}
+      <Loupe id={`${uid}-loupe`} cx={800} cy={220} r={150} from={[462, 224]}>
+        <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+          {[
+            { x: 682, top: 158, lean: -4 },
+            { x: 716, top: 146, lean: 3 },
+            { x: 752, top: 162, lean: -2 },
+            { x: 786, top: 150, lean: 5 },
+            { x: 822, top: 160, lean: -3 },
+            { x: 856, top: 148, lean: 2 },
+            { x: 890, top: 164, lean: -4 },
+          ].map(({ x, top, lean }, i) => (
+            <path
+              class="ea-branch"
+              d={`M${x} 390 C ${x + lean} 320, ${x - lean} 250, ${x + 1} ${top + 14} C ${x + 2} ${top - 8}, ${x + 18} ${top - 8}, ${x + 19} ${top + 14} C ${x + 20 + lean} 250, ${x + 21 - lean} 320, ${x + 20} 390`}
+              stroke-width="1.6"
+              stroke-opacity={i % 2 ? 0.7 : 0.9}
+            />
+          ))}
+        </g>
+        <path class="ea-fine" d="M650 128 C 740 112, 860 112, 950 128" stroke={accent} stroke-opacity="0.5" stroke-width="1.2" stroke-dasharray="2 6" fill="none" />
+        <Dots points={[[726, 140], [796, 144], [866, 142]]} />
+      </Loupe>
+    </g>
+  )
+}
+
+{
+  subject === "flow" && (
+    <g>
+      {/* Schéma volontairement abstrait : deux artères fines et parallèles. */}
+      <path
+        class="ea-body"
+        d="M180 150 C 360 132, 560 132, 760 150 C 800 154, 800 236, 760 240 C 560 258, 360 258, 180 240 C 150 236, 150 154, 180 150 Z"
+        fill={bodyH}
+        stroke={accent}
+        stroke-opacity="0.22"
+        stroke-width="1.5"
+      />
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path class="ea-main" d="M120 176 C 300 170, 520 166, 720 174 C 760 176, 800 172, 840 166" stroke-width="2.6" />
+        <path class="ea-main" d="M120 214 C 300 220, 520 224, 720 216 C 760 214, 800 218, 840 224" stroke-width="2.6" />
+        {[260, 400, 540, 660].map((x) => (
+          <path class="ea-fine" d={`M${x} 172 C ${x + 10} 150, ${x + 30} 150, ${x + 34} 166`} stroke-width="1.2" stroke-opacity="0.5" />
+        ))}
+        {[330, 470, 610].map((x) => (
+          <path class="ea-fine" d={`M${x} 219 C ${x + 10} 240, ${x + 30} 240, ${x + 34} 224`} stroke-width="1.2" stroke-opacity="0.5" />
+        ))}
+      </g>
+      <Dots points={[[120, 176], [120, 214], [840, 166], [840, 224]]} />
+    </g>
+  )
+}
+
+{
+  subject === "aneurysm" && (
+    <g>
+      <defs>
+        <linearGradient id={`${uid}-lumen`} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color={line} stop-opacity="0.04" />
+          <stop offset="50%" stop-color={line} stop-opacity="0.12" />
+          <stop offset="100%" stop-color={line} stop-opacity="0.04" />
+        </linearGradient>
+      </defs>
+      {/* Aorte en coupe : deux parois, dilatation fusiforme sous les rénales. */}
+      <path
+        d="M428 -20 L 428 150 C 428 176, 386 204, 384 258 C 382 312, 420 334, 428 352 L 428 388 C 420 410, 398 440, 380 470 L 520 470 C 502 440, 480 410, 472 388 L 472 352 C 480 334, 518 312, 516 258 C 514 204, 472 176, 472 150 L 472 -20 Z"
+        fill={`url(#${uid}-lumen)`}
+      />
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path class="ea-main" d="M428 -20 L 428 150 C 428 176, 386 204, 384 258 C 382 312, 420 334, 428 352 L 428 388 C 420 410, 398 440, 380 470" stroke-width="2.6" />
+        <path class="ea-main" d="M472 -20 L 472 150 C 472 176, 514 204, 516 258 C 518 312, 480 334, 472 352 L 472 388 C 480 410, 502 440, 520 470" stroke-width="2.6" />
+        <path class="ea-branch" d="M438 470 C 442 440, 450 420, 450 404 C 450 420, 458 440, 462 470" stroke-width="1.6" stroke-opacity="0.7" />
+        {/* Artères rénales, simples repères. */}
+        <path class="ea-branch" d="M428 120 C 400 118, 370 122, 340 130" stroke-width="1.6" stroke-opacity="0.7" />
+        <path class="ea-branch" d="M472 120 C 500 118, 530 122, 560 130" stroke-width="1.6" stroke-opacity="0.7" />
+      </g>
+      {/* Mesure du diamètre, à la manière d'un écran d'échographie. */}
+      <g stroke={accent} stroke-linecap="round" fill="none">
+        <path class="ea-fine" d="M392 258 H 508" stroke-opacity="0.8" stroke-width="1.6" stroke-dasharray="4 6" />
+        <path class="ea-branch" d="M392 246 v24 M508 246 v24" stroke-width="2" />
+      </g>
+      <Dots points={[[340, 130], [560, 130], [450, 404]]} />
+    </g>
+  )
+}
+
+{
+  subject === "clot" && (
+    <g>
+      <defs>
+        <linearGradient id={`${uid}-lumen`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color={line} stop-opacity="0.04" />
+          <stop offset="50%" stop-color={line} stop-opacity="0.12" />
+          <stop offset="100%" stop-color={line} stop-opacity="0.04" />
+        </linearGradient>
+      </defs>
+      {/* Veine en coupe longitudinale. */}
+      <path
+        d="M-20 182 C 200 176, 420 186, 620 180 C 780 176, 920 182, 1070 178 L 1070 272 C 920 268, 780 274, 620 270 C 420 264, 200 274, -20 268 Z"
+        fill={`url(#${uid}-lumen)`}
+      />
+      <g stroke={line} fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.92">
+        <path class="ea-main" d="M-20 182 C 200 176, 420 186, 620 180 C 780 176, 920 182, 1070 178" stroke-width="2.6" />
+        <path class="ea-main" d="M-20 268 C 200 274, 420 264, 620 270 C 780 274, 920 268, 1070 272" stroke-width="2.6" />
+        {/* Valvules : deux replis souples orientés vers le cœur (à gauche). */}
+        {[250, 820].map((x) => (
+          <>
+            <path class="ea-branch" d={`M${x} 181 C ${x - 22} 196, ${x - 44} 212, ${x - 60} 220`} stroke-width="1.8" stroke-opacity="0.85" />
+            <path class="ea-branch" d={`M${x} 270 C ${x - 22} 254, ${x - 44} 238, ${x - 60} 230`} stroke-width="1.8" stroke-opacity="0.85" />
+          </>
+        ))}
+      </g>
+      {/* Caillot : forme allongée crème, accrochée à la paroi. */}
+      <path
+        d="M430 266 C 438 238, 470 214, 520 210 C 572 206, 616 222, 640 244 C 652 256, 650 266, 640 268 C 580 270, 500 270, 430 266 Z"
+        fill={accent}
+        fill-opacity="0.32"
+        stroke={accent}
+        stroke-opacity="0.85"
+        stroke-width="1.6"
+        class="ea-branch"
+      />
+      <path
+        class="ea-fine"
+        d="M462 256 C 490 240, 540 232, 600 244"
+        stroke={accent}
+        stroke-opacity="0.6"
+        stroke-width="1.2"
+        stroke-dasharray="2 6"
+        fill="none"
+        stroke-linecap="round"
+      />
+      {/* Sens du flux : pointillés vers la gauche. */}
+      <path class="ea-fine" d="M980 225 H 860 M720 225 H 660 M400 225 H 270 M190 225 H 60" stroke={accent} stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="2 9" fill="none" />
+      <Dots points={[[520, 210], [250, 181], [820, 181]]} />
+    </g>
+  )
+}

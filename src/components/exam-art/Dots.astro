@@ -1,0 +1,12 @@
+---
+// Petits points d'accent crème posés sur les jonctions des vaisseaux.
+import { palette } from "./art.js";
+
+interface Props {
+  points: [number, number][];
+  r?: number;
+}
+const { points, r = 4.5 } = Astro.props;
+---
+
+{points.map(([cx, cy]) => <circle class="ea-dot" cx={cx} cy={cy} r={r} fill={palette.accent} />)}

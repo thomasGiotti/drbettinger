@@ -1,0 +1,50 @@
+---
+// Bloc « Venir au cabinet » (accueil et page Contact) : adresse, lien Google
+// Maps, puis stationnement / accès PMR / transports. Les lignes non encore
+// renseignées dans site.access affichent un repère à compléter (TODO-DR.md).
+import Icon from "./Icon.astro";
+import { site, mapsUrl } from "../data/site.js";
+
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
+
+const lines = [
+  { label: "Stationnement", value: site.access.parking, todo: "possibilités de stationnement à proximité" },
+  { label: "Accès PMR", value: site.access.pmr, todo: "accessibilité du cabinet aux personnes à mobilité réduite" },
+  { label: "Transports", value: site.access.transports, todo: "lignes et arrêts de transport en commun" },
+];
+---
+
+<div class={`flex gap-4 ${className}`}>
+  <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
+  <div>
+    <p class="text-xs tracking-wide-label uppercase text-ink-soft">Venir au cabinet</p>
+    <p class="mt-1 leading-relaxed text-ink">
+      {site.addressLine1}<br />{site.addressLine2}
+    </p>
+    <p class="mt-2">
+      <a
+        href={mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-xs tracking-wide-label uppercase text-navy underline underline-offset-4 hover:text-navy-deep"
+      >
+        Ouvrir dans Google Maps<span class="sr-only"> (nouvel onglet)</span>
+      </a>
+    </p>
+    <dl class="mt-4 space-y-1.5 text-sm">
+      {
+        lines.map((l) => (
+          <div class="flex flex-wrap gap-x-2">
+            <dt class="text-ink-soft">{l.label} :</dt>
+            <dd class={l.value ? "text-ink" : "text-ink-soft"}>
+              {l.value ?? `[À COMPLÉTER PAR LE DR BETTINGER : ${l.todo}]`}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</div>

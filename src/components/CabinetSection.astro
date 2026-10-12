@@ -3,6 +3,7 @@ import SectionTitle from "./SectionTitle.astro";
 import CtaButton from "./CtaButton.astro";
 import Icon from "./Icon.astro";
 import MapEmbed from "./MapEmbed.astro";
+import AccessBlock from "./AccessBlock.astro";
 import { site } from "../data/site.js";
 ---
 
@@ -13,17 +14,7 @@ import { site } from "../data/site.js";
     <SectionTitle title="Votre cabinet" class="mb-10" />
 
     <div class="max-w-md space-y-7 text-ink">
-      <div class="flex gap-4">
-        <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
-        <div>
-          <p class="text-xs tracking-wide-label uppercase text-ink-soft">
-            Adresse
-          </p>
-          <p class="mt-1 leading-relaxed">
-            {site.addressLine1}<br />{site.addressLine2}
-          </p>
-        </div>
-      </div>
+      <AccessBlock />
 
       <div class="flex gap-4">
         <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-navy" />

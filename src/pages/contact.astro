@@ -6,6 +6,7 @@ import CtaButton from "../components/CtaButton.astro";
 import Icon from "../components/Icon.astro";
 import EmergencyNotice from "../components/EmergencyNotice.astro";
 import MapEmbed from "../components/MapEmbed.astro";
+import AccessBlock from "../components/AccessBlock.astro";
 import { site } from "../data/site.js";
 
 const title = "Contact et horaires";
@@ -52,17 +53,7 @@ const description = `Coordonnées et horaires du cabinet de ${site.doctorName}, 
               </p>
             </div>
           </div>
-          <div class="flex gap-4">
-            <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
-            <div>
-              <p class="text-xs tracking-wide-label uppercase text-ink-soft">
-                Adresse
-              </p>
-              <p class="mt-1 leading-relaxed text-ink">
-                {site.addressLine1}<br />{site.addressLine2}
-              </p>
-            </div>
-          </div>
+          <AccessBlock />
           <div class="flex gap-4">
             <Icon name="clock" class="mt-1 h-5 w-5 shrink-0 text-navy" />
             <div>
@@ -84,19 +75,6 @@ const description = `Coordonnées et horaires du cabinet de ${site.doctorName}, 
               </p>
             </div>
           </div>
-          {
-            site.access && (
-              <div class="flex gap-4">
-                <Icon name="pin" class="mt-1 h-5 w-5 shrink-0 text-navy" />
-                <div>
-                  <p class="text-xs tracking-wide-label uppercase text-ink-soft">
-                    Accès
-                  </p>
-                  <p class="mt-1 leading-relaxed text-ink">{site.access}</p>
-                </div>
-              </div>
-            )
-          }
         </div>
       </div>
 

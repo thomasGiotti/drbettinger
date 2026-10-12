@@ -1,0 +1,109 @@
+// Table de correspondance slug d'examen -> illustration d'en-tête.
+// - subject : dessin propre à l'examen (voir Subject.astro)
+// - alt : texte alternatif court et descriptif
+// - label : pastille crème (décorative, comme « Écho-doppler au cabinet »
+//   dans le hero de l'accueil)
+// - focus : centre des cercles pointillés
+// - trace : cadre de tracé (null = pas de tracé)
+// - probe : sonde d'écho-doppler (null = pas de sonde)
+
+const traceRight = { x: 712, y: 300, w: 290, h: 92 };
+
+export const examIllustrations = {
+  "echo-doppler-transcranien": {
+    subject: "head",
+    alt: "Illustration schématique : tête de profil et artères à l'intérieur du crâne, sonde posée sur la tempe.",
+    label: "Artères intracrâniennes",
+    focus: [452, 214],
+    trace: { kind: "arterial", ...traceRight },
+    probe: { x: 640, y: 92, rotate: 56, cable: 1 },
+  },
+  "echo-doppler-troncs-supra-aortiques": {
+    subject: "neck",
+    alt: "Illustration schématique : artères carotides et vertébrales dans le cou, sonde posée sur le côté du cou.",
+    label: "Carotides & vertébrales",
+    focus: [450, 210],
+    trace: { kind: "arterial", ...traceRight },
+    probe: { x: 600, y: 110, rotate: 38, cable: 1 },
+  },
+  "echo-doppler-membres-superieurs": {
+    subject: "arm-arteries",
+    alt: "Illustration schématique : bras tendu et ses artères, de l'épaule jusqu'à la main.",
+    label: "Artères du bras",
+    focus: [430, 205],
+    trace: { kind: "arterial", x: 600, y: 316, w: 300, h: 88 },
+    probe: { x: 330, y: 34, rotate: -28, cable: -1 },
+  },
+  "echo-doppler-aortique-visceral": {
+    subject: "aorta",
+    alt: "Illustration schématique : aorte abdominale et ses branches vers les organes digestifs et les reins.",
+    label: "Aorte & branches viscérales",
+    focus: [450, 200],
+    trace: { kind: "arterial", ...traceRight },
+    probe: { x: 640, y: 150, rotate: 40, cable: 1 },
+  },
+  "echo-doppler-arteriel-membres-inferieurs": {
+    subject: "leg-arteries",
+    alt: "Illustration schématique : jambe allongée et ses artères, de la cuisse jusqu'au pied.",
+    label: "Artères de la jambe",
+    focus: [520, 214],
+    trace: { kind: "arterial", x: 600, y: 330, w: 300, h: 84 },
+    probe: { x: 420, y: 22, rotate: -24, cable: -1 },
+  },
+  "echo-doppler-veineux-membres-inferieurs": {
+    subject: "leg-veins",
+    alt: "Illustration schématique : veines de la jambe, avec le détail d'une valvule veineuse.",
+    label: "Veines de la jambe",
+    focus: [430, 214],
+    trace: { kind: "venous", x: 300, y: 340, w: 300, h: 76 },
+    probe: null,
+  },
+  "echo-doppler-veineux-membres-superieurs": {
+    subject: "arm-veins",
+    alt: "Illustration schématique : bras tendu et ses veines superficielles, de l'épaule jusqu'à la main.",
+    label: "Veines du bras",
+    focus: [430, 205],
+    trace: { kind: "venous", x: 600, y: 320, w: 300, h: 82 },
+    probe: { x: 330, y: 34, rotate: -28, cable: -1 },
+  },
+  "pressotherapie-oedeme-jambes": {
+    subject: "pressotherapy",
+    alt: "Illustration schématique : jambe allongée dans un manchon de pressothérapie à plusieurs compartiments.",
+    label: "Manchon de pressothérapie",
+    focus: [480, 210],
+    trace: { kind: "pressure", x: 590, y: 340, w: 320, h: 76 },
+    probe: null,
+  },
+  "capillaroscopie-peri-ungueale": {
+    subject: "finger",
+    alt: "Illustration schématique : extrémité d'un doigt et, en médaillon, les petits capillaires visibles au bord de l'ongle.",
+    label: "Capillaires péri-unguéaux",
+    focus: [800, 220],
+    trace: null,
+    probe: null,
+  },
+  "echo-doppler-penien": {
+    subject: "flow",
+    alt: "Illustration schématique et abstraite : deux fines artères parallèles et une sonde d'écho-doppler.",
+    label: "Écho-doppler au cabinet",
+    focus: [470, 190],
+    trace: { kind: "arterial", ...traceRight },
+    probe: { x: 520, y: 18, rotate: 28, cable: 1 },
+  },
+  "depistage-anevrisme": {
+    subject: "aneurysm",
+    alt: "Illustration schématique : aorte abdominale présentant une dilatation, avec la mesure de son diamètre.",
+    label: "Mesure du diamètre de l'aorte",
+    focus: [450, 255],
+    trace: { kind: "arterial", ...traceRight },
+    probe: { x: 640, y: 150, rotate: 40, cable: 1 },
+  },
+  "phlebites-thrombophilies": {
+    subject: "clot",
+    alt: "Illustration schématique : veine vue en coupe longitudinale, avec ses valvules et un caillot.",
+    label: "Veine & caillot",
+    focus: [520, 225],
+    trace: { kind: "venous", x: 640, y: 346, w: 300, h: 74 },
+    probe: { x: 545, y: 18, rotate: 20, cable: 1 },
+  },
+};

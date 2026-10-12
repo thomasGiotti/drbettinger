@@ -1,0 +1,109 @@
+---
+// Illustration d'en-tête des pages d'examen (bandeau 21:9).
+// Même grammaire que l'illustration du hero (VascularArt, variante
+// "doppler") : fond en dégradé bleu nuit, halo discret, cercles pointillés
+// crème, sujet au trait clair, points d'accent, sonde et tracé d'écho-doppler,
+// pastille crème en serif. Le sujet propre à chaque examen est décrit dans
+// illustrations.js (table slug -> illustration) et dessiné dans Subject.astro.
+import { palette, VIEW_W, VIEW_H } from "./art.js";
+import { examIllustrations } from "./illustrations.js";
+import Rings from "./Rings.astro";
+import Probe from "./Probe.astro";
+import Trace from "./Trace.astro";
+import Subject from "./Subject.astro";
+
+interface Props {
+  slug: string;
+  class?: string;
+}
+const { slug, class: className = "" } = Astro.props;
+const art = examIllustrations[slug];
+const uid = `ea-${slug}`;
+---
+
+{
+  art && (
+    <div class={`exam-art relative ${className}`}>
+      <div class="relative h-full w-full overflow-hidden bg-navy">
+        <svg
+          class="absolute inset-0 h-full w-full"
+          viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
+          preserveAspectRatio="xMidYMid slice"
+          role="img"
+          aria-labelledby={`${uid}-title`}
+        >
+          <title id={`${uid}-title`}>{art.alt}</title>
+          <defs>
+            <linearGradient id={`${uid}-bg`} x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color={palette.bgTop} />
+              <stop offset="55%" stop-color={palette.bgMid} />
+              <stop offset="100%" stop-color={palette.bgDeep} />
+            </linearGradient>
+            <radialGradient
+              id={`${uid}-halo`}
+              cx={art.focus[0]}
+              cy={art.focus[1]}
+              r="300"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stop-color={palette.line} stop-opacity="0.07" />
+              <stop offset="100%" stop-color={palette.line} stop-opacity="0" />
+            </radialGradient>
+            {/* Silhouettes : même voile clair que la jambe du hero. */}
+            <linearGradient id={`${uid}-body`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color={palette.line} stop-opacity="0.10" />
+              <stop offset="100%" stop-color={palette.line} stop-opacity="0.02" />
+            </linearGradient>
+            <linearGradient id={`${uid}-body-h`} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color={palette.line} stop-opacity="0.03" />
+              <stop offset="100%" stop-color={palette.line} stop-opacity="0.10" />
+            </linearGradient>
+          </defs>
+
+          <rect width={VIEW_W} height={VIEW_H} fill={`url(#${uid}-bg)`} />
+          <rect width={VIEW_W} height={VIEW_H} fill={`url(#${uid}-halo)`} />
+          <Rings cx={art.focus[0]} cy={art.focus[1]} />
+          <Rings cx={1010} cy={40} count={3} base={40} step={55} opacity={0.18} dash="2 10" />
+
+          <Subject subject={art.subject} uid={uid} />
+          {art.probe && <Probe {...art.probe} />}
+          {art.trace && <Trace {...art.trace} />}
+        </svg>
+      </div>
+      {/* Pastille crème, comme « Écho-doppler au cabinet » dans le hero. */}
+      <div
+        class="absolute -bottom-6 left-3 hidden bg-accent px-6 py-4 shadow-lg sm:block lg:-left-6"
+        aria-hidden="true"
+      >
+        <p class="font-serif text-sm text-ink">{art.label}</p>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  /* Sur petit écran, le bandeau est réduit au tiers : on épaissit les traits
+     pour garder le même poids visuel que sur ordinateur. */
+  @media (max-width: 639px) {
+    .exam-art :global(.ea-main) {
+      stroke-width: 5.5;
+    }
+    .exam-art :global(.ea-branch),
+    .exam-art :global(.ea-trace),
+    .exam-art :global(.ea-body) {
+      stroke-width: 3.5;
+    }
+    .exam-art :global(.ea-fine),
+    .exam-art :global(.ea-ring) {
+      stroke-width: 2.4;
+    }
+    .exam-art :global(.ea-cable) {
+      stroke-width: 5;
+    }
+    .exam-art :global(.ea-dot) {
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: scale(2);
+    }
+  }
+</style>

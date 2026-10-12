@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
 import SectionTitle from "../../components/SectionTitle.astro";
-import VascularArt from "../../components/VascularArt.astro";
+import ExamIllustration from "../../components/exam-art/ExamIllustration.astro";
 import CtaButton from "../../components/CtaButton.astro";
 import Icon from "../../components/Icon.astro";
 import { pathologies } from "../../data/pathologies.js";
@@ -20,18 +20,6 @@ const { pathology } = Astro.props;
 const title = pathology.seoTitle ?? pathology.cardTitle;
 const description = pathology.cardDesc;
 
-const illustrationBySlug = {
-  "echo-doppler-transcranien": "doppler",
-  "echo-doppler-troncs-supra-aortiques": "doppler",
-  "echo-doppler-membres-superieurs": "doppler",
-  "echo-doppler-aortique-visceral": "network",
-  "echo-doppler-arteriel-membres-inferieurs": "walking",
-  "echo-doppler-veineux-membres-inferieurs": "network",
-  "echo-doppler-penien": "doppler",
-  "depistage-anevrisme": "network",
-  "phlebites-thrombophilies": "doppler",
-};
-const illustration = illustrationBySlug[pathology.slug] ?? "network";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -39,9 +27,9 @@ const illustration = illustrationBySlug[pathology.slug] ?? "network";
 
   <section class="bg-cream py-20">
     <div class="mx-auto max-w-5xl px-6 lg:px-10">
-      <!-- Remplacer par : illustration ou photographie douce en lien avec l'acte -->
-      <VascularArt
-        variant={illustration}
+      <!-- Illustration propre à l'examen : voir components/exam-art/illustrations.js -->
+      <ExamIllustration
+        slug={pathology.slug}
         class="mb-16 aspect-[21/9] w-full shadow-lg"
       />
 

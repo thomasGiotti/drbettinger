@@ -1,0 +1,66 @@
+---
+// Médaillon de détail : cercle crème doublé d'un anneau pointillé, relié au
+// point observé par un fil pointillé. Le contenu (slot) est découpé au cercle.
+import { palette } from "./art.js";
+
+interface Props {
+  id: string;
+  cx: number;
+  cy: number;
+  r: number;
+  /** Point observé sur le sujet, relié au médaillon. */
+  from?: [number, number];
+}
+const { id, cx, cy, r, from } = Astro.props;
+const fill = `url(#${id}-fill)`;
+// Point d'attache du fil sur le bord du cercle, dans la direction du sujet.
+let anchor: [number, number] | null = null;
+if (from) {
+  const dx = from[0] - cx;
+  const dy = from[1] - cy;
+  const len = Math.hypot(dx, dy) || 1;
+  anchor = [cx + (dx / len) * (r + 14), cy + (dy / len) * (r + 14)];
+}
+---
+
+<g>
+  <defs>
+    <clipPath id={`${id}-clip`}>
+      <circle cx={cx} cy={cy} r={r - 1} />
+    </clipPath>
+    <radialGradient id={`${id}-fill`} cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color={palette.bgTop} />
+      <stop offset="100%" stop-color={palette.bgDeep} />
+    </radialGradient>
+  </defs>
+  {
+    from && anchor && (
+      <>
+        <path
+          class="ea-fine"
+          d={`M${from[0]} ${from[1]} L${anchor[0]} ${anchor[1]}`}
+          stroke={palette.accent}
+          stroke-opacity="0.45"
+          stroke-width="1.2"
+          stroke-dasharray="2 6"
+        />
+        <circle class="ea-dot" cx={from[0]} cy={from[1]} r="4.5" fill={palette.accent} />
+      </>
+    )
+  }
+  <circle cx={cx} cy={cy} r={r} fill={fill} />
+  <g clip-path={`url(#${id}-clip)`}>
+    <slot />
+  </g>
+  <circle class="ea-body" cx={cx} cy={cy} r={r} fill="none" stroke={palette.accent} stroke-opacity="0.45" stroke-width="1.5" />
+  <circle
+    class="ea-ring"
+    cx={cx}
+    cy={cy}
+    r={r + 14}
+    fill="none"
+    stroke={palette.accent}
+    stroke-opacity="0.3"
+    stroke-dasharray="2 7"
+  />
+</g>

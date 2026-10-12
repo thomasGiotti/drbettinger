@@ -1,0 +1,33 @@
+---
+// Cadre de tracé d'écho-doppler (même construction que dans le hero).
+import { palette, tracePath } from "./art.js";
+
+interface Props {
+  kind: "arterial" | "venous" | "pressure";
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+const { kind, x, y, w, h } = Astro.props;
+const base = y + h * 0.6;
+---
+
+<g>
+  <rect x={x} y={y} width={w} height={h} fill="none" stroke={palette.accent} stroke-opacity="0.3" />
+  <path
+    d={`M${x} ${base} h${w}`}
+    stroke={palette.accent}
+    stroke-opacity="0.3"
+    stroke-dasharray="1 6"
+  />
+  <path
+    class="ea-trace"
+    d={tracePath(kind, x, y, w, h)}
+    fill="none"
+    stroke={palette.accent}
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+</g>

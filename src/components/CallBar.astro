@@ -1,0 +1,24 @@
+---
+// Barre d'appel fixe, sur mobile et tablette uniquement (sur ordinateur le
+// numéro est déjà affiché dans le header, à partir de xl). Le <body> réserve
+// la même hauteur en bas de page (voir .has-call-bar dans global.css) : la
+// barre ne recouvre ni le contenu ni le pied de page.
+import Icon from "./Icon.astro";
+import { site } from "../data/site.js";
+---
+
+<div class="call-bar fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-navy-deep xl:hidden">
+  <a
+    href={`tel:${site.phoneHref}`}
+    class="flex h-13 items-center justify-center gap-2.5 px-6 text-xs tracking-label uppercase text-white/90 hover:text-white focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-accent"
+  >
+    <Icon name="phone" class="h-4 w-4 shrink-0 text-accent" />
+    <span>Appeler le cabinet <span aria-hidden="true">·</span> <span class="whitespace-nowrap">{site.phone}</span></span>
+  </a>
+</div>
+
+<style>
+  .call-bar {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+</style>

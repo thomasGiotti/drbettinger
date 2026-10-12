@@ -24,9 +24,14 @@ export const site = {
     { day: "Dimanche", hours: "Fermé" },
   ],
   hoursConfirmed: false,
-  // TODO : informations d'accès réelles à fournir (stationnement, transports).
-  // Laissé vide, le bloc « Accès » n'est pas affiché sur la page Contact.
-  access: "",
+  // Bloc « Venir au cabinet » (accueil et Contact). Tant qu'une ligne vaut
+  // null, un repère visible [À COMPLÉTER PAR LE DR BETTINGER : …] s'affiche à
+  // sa place (voir TODO-DR.md). Ne rien inventer : texte fourni par le cabinet.
+  access: {
+    parking: null,
+    pmr: null,
+    transports: null,
+  },
   // Information factuelle sur les conditions d'exercice, à présenter sans
   // superlatif ni argument commercial (pas de "matériel de pointe", etc.).
   equipment:
@@ -60,6 +65,9 @@ export const site = {
     "Dépistage et prise en charge des phlébites, y compris les formes héréditaires (thrombophilies)",
   ],
 };
+
+// Lien Google Maps vers le cabinet (même lien que sous la carte).
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.fullAddress)}`;
 
 export const nav = [
   { label: "Accueil", href: "/" },

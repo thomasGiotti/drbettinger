@@ -45,6 +45,17 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Réserve la hauteur de la barre d'appel mobile (CallBar.astro : 3.25rem + 1px de bordure)
+   sous le pied de page, pour qu'elle ne masque jamais le contenu. */
+.has-call-bar {
+  padding-bottom: calc(3.25rem + 1px + env(safe-area-inset-bottom));
+}
+@media (min-width: 80rem) {
+  .has-call-bar {
+    padding-bottom: 0;
+  }
+}
+
 /* Pousse le footer en bas de l'écran même quand le contenu est plus court
    que la fenêtre (ex. page 404, pages courtes). */
 body > main {

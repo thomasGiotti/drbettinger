@@ -6,7 +6,7 @@
 // Maps » suffit. Le bloc de remplacement est dans le flux (pas d'overflow
 // hidden) : sur petit écran, le conteneur s'agrandit si le texte dépasse le
 // ratio prévu.
-import { site } from "../data/site.js";
+import { site, mapsUrl } from "../data/site.js";
 
 interface Props {
   /** Classes du conteneur (taille, bordure…), identiques à l'ancienne iframe. */
@@ -16,7 +16,6 @@ const { class: className = "" } = Astro.props;
 
 const query = encodeURIComponent(site.fullAddress);
 const embedUrl = `https://www.google.com/maps?q=${query}&output=embed`;
-const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${query}`;
 const iframeTitle = `Localisation du cabinet - ${site.fullAddress}`;
 ---
 
